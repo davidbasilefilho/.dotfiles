@@ -1,0 +1,72 @@
+#+title: Fish Shell Config
+#+author: David Basile Filho
+#+startup: showeverything
+#+description: An org document for David Basile Filho's Fish Shell Config file
+#+property: header-args :tangle config.fish
+#+auto_tangle: t
+
+* Table of Contents :toc:
+- [[#fish-shell][Fish Shell]]
+- [[#config-file][Config File]]
+  - [[#aliases][Aliases]]
+  - [[#defaults][Defaults]]
+  - [[#path][PATH]]
+  - [[#no-greeting-message][No Greeting Message]]
+  - [[#prompt-and-programs][Prompt and Programs]]
+
+* Fish Shell
+The friendly interactive shell is a Unix shell that attempts to be more interactive and user-friendly than those with a longer history or those formulated as function-compatible replacements for the aforementioned. The design goal of fish is to give the user a rich set of powerful features in a way that is easy to discover, remember, and use.
+
+* Config File
+** Aliases
+Some aliases I created for commands I use quite a bit.
+
+#+begin_src shell
+alias ..='cd ..'
+alias mv='mv -i'
+alias rm='rm -i'
+alias cp='cp -i'
+alias ls='exa'
+alias la='exa -a'
+alias lsa='exa -la'
+alias ttpt='tt --words pt'
+alias em='emacs -nw'
+
+alias emacsclient="emacsclient -c -a 'emacs'"
+alias spt="python3 ~/dev/python/spotify-tui-script/spt.py"
+#+end_src
+
+** Defaults
+Sets some default environment variables that are not PATH.
+
+#+begin_src shell
+export EDITOR=nvim
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib64"
+#+end_src
+
+** PATH
+Adds some paths to the PATH environment variables.
+
+#+begin_src shell
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.config:$PATH"
+export PATH="$HOME/.npm-global/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/.dotfiles/bin:$PATH"
+#+end_src
+
+** No Greeting Message
+Gets rid of the fish shell's greeting message
+
+#+begin_src shell
+set -U fish_greeting
+#+end_src
+
+** Prompt and Programs
+Sets up the Oh My Posh prompt and runs fastfetch
+
+#+begin_src shell
+oh-my-posh init fish --config /home/basile/.config/oh-my-posh/star.omp.json | source
+fastfetch
+#+end_src

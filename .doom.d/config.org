@@ -1,0 +1,93 @@
+#+title: Doom Emacs Configuration
+#+author: David Basile Filho
+#+startup: showeverything
+#+description: An org document for David Basile Filho's Doom Emacs Configurations
+#+property: header-args :tangle config.el
+#+auto_tangle: t
+
+* Table of Contents :toc:
+- [[#doom-emacs][Doom Emacs]]
+- [[#user-information][User Information]]
+- [[#themes][Themes]]
+- [[#org-lsp-and-languages-configuration][Org, LSP and Languages Configuration]]
+- [[#unityel][unity.el]]
+- [[#beacon][beacon]]
+- [[#key-bindings][Key bindings!]]
+- [[#org-auto-tangle][org-auto-tangle]]
+
+* Doom Emacs
+Doom is a configuration framework for GNU Emacs tailored for Emacs bankruptcy veterans who want less framework in their frameworks, a modicum of stability (and reproducibility) from their package manager, and the performance of a hand rolled config (or better). It can be a foundation for your own config or a resource for Emacs enthusiasts to learn more about our favorite operating system.
+
+* User Information
+This code sets up my name and email address.
+
+#+begin_src emacs-lisp
+(setq user-full-name "David Basile Filho"
+      user-mail-address "davidbasilefilho@gmail.com")
+#+end_src
+
+* Themes
+Sets up the color scheme, the font and line numbers.
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-one)
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :style "Retina"))
+(setq display-line-numbers-type 'relative)
+#+end_src
+
+* Org, LSP and Languages Configuration
+Configures org-mode, LSP and language-specific stuff.
+
+#+begin_src emacs-lisp
+;; Org
+(setq org-directory "~/org/")
+(setq org-image-actual-width nil)
+
+;; Shell Languages
+(org-babel-do-load-languages
+'org-babel-load-languages
+'((shell . t)))
+
+;; Rust
+(setq lsp-rust-server 'rust-analyzer)
+#+end_src
+
+* unity.el
+A package that allows Emacs to integrate with the Unity Game Engine.
+
+#+begin_src emacs-lisp
+(straight-use-package
+'(unity :type git :host github :repo "elizagamedev/unity.el"))
+(add-hook 'after-init-hook #'unity-mode)
+#+end_src
+
+* beacon
+
+#+begin_src emacs-lisp
+(beacon-mode 1)
+#+end_src
+
+* Key bindings!
+Adds or changes key bindings for Doom Emacs.
+
+#+begin_src emacs-lisp
+(map! :leader
+      "b ." #'evilnc-comment-or-uncomment-lines)
+(map! :leader
+      "r" #'evil-redo)
+(map! :leader
+      "u" #'evil-undo)
+(map! :leader
+      "c v t" #'org-babel-tangle)
+#+end_src
+
+* org-auto-tangle
+A package that makes Emacs automatically tangle an org document after saving it.
+
+#+begin_src emacs-lisp
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+#+end_src
