@@ -1,9 +1,0 @@
-[$Version]
-update_info=kxkb.upd:remove-empty-lists,kxkb.upd:add-back-resetoptions,kxkb_variants.upd:split-variants
-
-[Layout]
-LayoutList=br
-# Swaps Ctrl and Caps Lock:
-Options=ctrl:nocaps,ctrl:swapcaps,caps:ctrl_modifier
-ResetOldOptions=true
-Use=true

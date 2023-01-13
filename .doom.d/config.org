@@ -67,10 +67,11 @@ A package that displays a minimap on the right of the screen.
 
 #+begin_src emacs-lisp
 (setq minimap-window-location 'right)
-(setq minimap-mode t)
+(setq minimap-mode 1)
 #+end_src
 
 * beacon
+A cool effect that appears when the cursor moves a lot.
 
 #+begin_src emacs-lisp
 (beacon-mode 1)
