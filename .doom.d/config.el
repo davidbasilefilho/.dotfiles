@@ -21,6 +21,9 @@
 '(unity :type git :host github :repo "elizagamedev/unity.el"))
 (add-hook 'after-init-hook #'unity-mode)
 
+(setq minimap-window-location 'right)
+(setq minimap-mode 1)
+
 (beacon-mode 1)
 
 (map! :leader
