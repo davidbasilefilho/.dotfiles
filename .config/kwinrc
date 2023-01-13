@@ -52,6 +52,9 @@ patterns=yakuake\nurxvt\nkeepassxc\nkitty\nemacs
 active=-1
 count=0
 
+[TabBox]
+LayoutName=thumbnails
+
 [TabBoxAlternative]
 LayoutName=thumbnail_grid
 
