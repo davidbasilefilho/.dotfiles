@@ -67,7 +67,7 @@ A package that displays a minimap on the right of the screen.
 
 #+begin_src emacs-lisp
 (setq minimap-window-location 'right)
-(setq minimap-mode 1)
+(setq minimap-mode t)
 #+end_src
 
 * beacon

@@ -22,7 +22,7 @@
 (add-hook 'after-init-hook #'unity-mode)
 
 (setq minimap-window-location 'right)
-(setq minimap-mode 1)
+(setq minimap-mode t)
 
 (beacon-mode 1)
 
