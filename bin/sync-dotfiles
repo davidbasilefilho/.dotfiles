@@ -40,8 +40,3 @@ else
 fi
 
 cd bin/
-
-echo " "
-echo "Now I will run the setup.sh script"
-sudo chmod +x ./setup.sh
-./setup.sh
