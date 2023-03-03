@@ -31,8 +31,8 @@ This code sets up my name and email address.
 Sets up the color scheme, the font and line numbers.
 
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :style "Retina"))
+(setq doom-theme 'catppuccin)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :style "Retina"))
 (setq display-line-numbers-type 'relative)
 #+end_src
 

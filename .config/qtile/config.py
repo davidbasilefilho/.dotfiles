@@ -70,6 +70,15 @@ decoration_group = {
     "padding": 10,
 }
 
+def run_emacsclient():
+    lazy.spawn("emacsclient -c -a 'emacs'")
+
+def kill_emacs_server():
+    lazy.spawn("killall emacs")
+
+def restart_emacs_server():
+    lazy.spawn("killall emacs")
+    lazy.spawn("emacsclient -c -a 'emacs'")
 
 keys = [
         # A list of available commands that can be bound to keys can be found
@@ -114,7 +123,9 @@ keys = [
         # Open Programs
         Key([mod], "b", lazy.spawn(browser), desc="Open Browser"),
         Key([mod], "e", lazy.spawn(filemanager), desc="Open File Manager"),
-        Key([mod, "shift"], "e", lazy.spawn("emacsclient -c -a emacs"), desc="Open the Emacs Client"),
+        Key([mod, "shift"], "e", lazy.spawn("emacsclient -c -a 'emacs'"), desc="Open the Emacs Client"),
+        Key([mod, "control"], "e", restart_emacs_server(), desc="Restart Emacs Server"),
+        Key([mod, "control", "shift"], "e", kill_emacs_server(), desc="Restart Emacs Server"),
         Key([mod], "space", lazy.spawn([home + "/.config/rofi/scripts/launcher_t2"]), desc="Open Rofi"),
         Key([mod, "shift"], "p", lazy.spawn([home + "/.config/rofi/scripts/powermenu_t2"]), desc="Open Power Menu"),
         ]

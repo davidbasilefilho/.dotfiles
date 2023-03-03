@@ -1,8 +1,8 @@
 (setq user-full-name "David Basile Filho"
       user-mail-address "davidbasilefilho@gmail.com")
 
-(setq doom-theme 'doom-one)
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :style "Retina"))
+(setq doom-theme 'catppuccin)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :style "Retina"))
 (setq display-line-numbers-type 'relative)
 
 ;; Org
