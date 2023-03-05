@@ -15,7 +15,6 @@
 - [[#beacon][beacon]]
 - [[#key-bindings][Key bindings!]]
 - [[#org-auto-tangle][org-auto-tangle]]
-- [[#init][init]]
 
 * Doom Emacs
 Doom is a configuration framework for GNU Emacs tailored for Emacs bankruptcy veterans who want less framework in their frameworks, a modicum of stability (and reproducibility) from their package manager, and the performance of a hand rolled config (or better). It can be a foundation for your own config or a resource for Emacs enthusiasts to learn more about our favorite operating system.
@@ -33,7 +32,7 @@ Sets up the color scheme, the font and line numbers.
 
 #+begin_src emacs-lisp
 (setq doom-theme 'catppuccin)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :style "Retina"))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
 (setq display-line-numbers-type 'relative)
 #+end_src
 
@@ -102,9 +101,3 @@ A package that makes Emacs automatically tangle an org document after saving it.
   :config
   (setq org-auto-tangle-default t))
 #+end_src
-
-* init
-
- #+begin_src emacs-lisp
-
- #+end_src

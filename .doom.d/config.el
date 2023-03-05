@@ -2,7 +2,7 @@
       user-mail-address "davidbasilefilho@gmail.com")
 
 (setq doom-theme 'catppuccin)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 14 :style "Retina"))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
 (setq display-line-numbers-type 'relative)
 
 ;; Org
@@ -40,5 +40,3 @@
   :hook (org-mode . org-auto-tangle-mode)
   :config
   (setq org-auto-tangle-default t))
-
-

@@ -26,26 +26,21 @@ alias ..='cd ..'
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
-alias ls='exa'
-alias la='exa -a'
-alias lsa='exa -la'
-alias ttpt='tt --words pt'
+alias ls='exa -la'
 alias em='emacs -nw'
 
 alias emacsclient="emacsclient -c -a 'emacs'"
-alias spt="python3 ~/dev/python/spotify-tui-script/spt.py"
 #+end_src
 
 ** Defaults
 Sets some default environment variables that are not PATH.
 
 #+begin_src shell
-export EDITOR=nvim
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib64"
 #+end_src
 
 ** PATH
-Adds some paths to the PATH environment variables.
+Adds some paths to the PATH environment variable.
 
 #+begin_src shell
 export PATH="$HOME/.emacs.d/bin:$PATH"
@@ -67,6 +62,7 @@ set -U fish_greeting
 Sets up the Oh My Posh prompt and runs fastfetch
 
 #+begin_src shell
-oh-my-posh init fish --config /home/basile/.config/oh-my-posh/star.omp.json | source
+# oh-my-posh init fish --config /home/basile/.config/oh-my-posh/star.omp.json | source
+starship init fish | source
 fastfetch
 #+end_src
