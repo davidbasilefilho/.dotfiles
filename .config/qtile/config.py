@@ -36,12 +36,12 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal 
 from typing import List 
 from qtile_extras import widget
-from qtile_extras.widget.decorations import BorderDecoration, PowerLineDecoration, RectDecoration
+from qtile_extras.widget.decorations import RectDecoration
 
 mod = "mod4"
 terminal = "alacritty"
 browser = "brave-browser"
-filemanager = "pcmanfm-qt"
+filemanager = "pcmanfm"
 
 default_border_width = 6
 default_margin = 8
@@ -65,20 +65,25 @@ colors = [["#1E1E2E", "#1E1E2E"],
 
 decoration_group = {
     "decorations": [
-        RectDecoration(colour=colors[12], radius=default_radius, filled=True, padding_y=0, group=True)
+        RectDecoration(colour=colors[12], radius=default_radius, filled=True,
+                       padding_y=0, group=True)
     ],
     "padding": 10,
 }
 
+
 def run_emacsclient():
     lazy.spawn("emacsclient -c -a 'emacs'")
+
 
 def kill_emacs_server():
     lazy.spawn("killall emacs")
 
+
 def restart_emacs_server():
     lazy.spawn("killall emacs")
     lazy.spawn("emacsclient -c -a 'emacs'")
+
 
 keys = [
         # A list of available commands that can be bound to keys can be found
@@ -131,7 +136,7 @@ keys = [
         ]
 
 group_names = "WWW DEV MUS GFX".split()
-groups = [Group(name, layout='bsp') for name in group_names]
+groups = [Group(name, layout='columns') for name in group_names]
 for i, name in enumerate(group_names):
     indx = str(i + 1)
     keys += [
@@ -139,7 +144,13 @@ for i, name in enumerate(group_names):
             Key([mod, 'shift'], indx, lazy.window.togroup(name))]
 
 layouts = [
-        # layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+        layout.Columns(border_focus_stack=colors[7],
+                       border_focus=colors[7],
+                       border_normal_stack=colors[0],
+                       border_normal=colors[0],
+                       border_on_single=True,
+                       margin=default_margin,
+                       border_width=default_border_width),
         # layout.Max(),
         # Try more layouts by unleashing below layouts.
         # layout.Stack(num_stacks=2),

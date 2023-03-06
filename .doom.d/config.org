@@ -32,7 +32,7 @@ Sets up the color scheme, the font and line numbers.
 
 #+begin_src emacs-lisp
 (setq doom-theme 'catppuccin)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq display-line-numbers-type 'relative)
 #+end_src
 

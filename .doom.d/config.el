@@ -2,7 +2,7 @@
       user-mail-address "davidbasilefilho@gmail.com")
 
 (setq doom-theme 'catppuccin)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15))
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
 (setq display-line-numbers-type 'relative)
 
 ;; Org
