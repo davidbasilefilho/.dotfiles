@@ -5,62 +5,39 @@
 #+property: header-args :tangle install.fish
 #+auto_tangle: t
 
-DISCLAIMER - USING THIS REPO WILL ALMOST CERTAINLY REPLACE YOUR CURRENT DOTS, THIS REPO IS INTEDED FOR USE ON BRAND NEW KDE MACHINES
-
-#+attr_org: :width 750
-[[./.imgs/screenshot.png]]
-
 These are my dotfiles! They include Doom Emacs, Latte Dock, Alacritty, Oh My Posh and Picom configurations.
 
 * Table of Contents :toc:
 - [[#dependencies][Dependencies]]
 - [[#getting-started][Getting Started]]
   - [[#setting-up-the-repo][Setting Up the Repo]]
-  - [[#delete-the-current-configuration-files][Delete the Current Configuration Files]]
-  - [[#run-the-sync-and-setup-scripts][Run the Sync and Setup Scripts]]
-  - [[#enabling-the-emacs-service][Enabling the Emacs Service]]
+  - [[#run-the-sync-script][Run the Sync Script]]
 
 * Dependencies
 This is a list of the packages you need to use this repo.
 
-- [[https://kernel.org][GNU/Linux]];
-- [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://github.com/doomemacs/doomemacs][Doom Emacs]];
-- [[https://fishshell.com/][Fish Shell]];
-- [[https://github.com/Bismuth-Forge/bismuth][Bismuth]];
+- [[https://kernel.org][GNU/Linux]] (I use Fedora 37);
+- [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://github.com/doomemacs/doomemacs][Doom Emacs]] (install on ~/.emacs.d);
+- [[https://neovim.io][Neovim]], [[https://nvchad.com][NvChad]] and [[https://neovide.dev][Neovide]];
+  The JetBrains Mono [[https://nerdfonts.com][Nerd Font]];
 - [[https://github.com/yshui/picom][Picom]];
+- [[https://qtile.org][Qtile]] and [[https://github.com/elParaguayo/qtile-extras][qtile-extras]];
+- [[- https://github.com/davatorium/rofi][Rofi]] and the [[https://github.com/adi1090x/rofi][Rofi Collection]];
+- [[https://fishshell.com/][Fish Shell]];
 - [[https://www.gnu.org/software/stow/][GNU Stow]] (So you can manage the dots);
 - [[https://github.com/alacritty/alacritty/][Alacritty]] Terminal Emulator;
-- [[https://kde.org/plasma-desktop/][The KDE Plasma Desktop]] (the latest 5.x version is preferred) using X11;
-- [[https://github.com/KDE/latte-dock][Latte Dock]];
-- [[https://www.pling.com/p/1274218][This Window Title Widget]];
 - [[https://github.com/PapirusDevelopmentTeam/papirus-icon-theme][Papirus Icon Theme]];
-- [[https://github.com/vinceliuice/Orchis-kde][Orchis KDE]];
-- [[https://github.com/Luwx/Lightly][Lightly]].
+- The [[github:catppuccin/catppuccin][Catppuccin]] Color Scheme!
 
 * Getting Started
 This section of the README is dedicated to setting up the dots.
 These instructions will be at [[./install.fish]]
 
 ** Setting Up the Repo
-First, to get access to the files, so you can install this, clone the repo with git clone
+First, to get access to the files, so you can install the dots, clone the repo with git clone
 
-** Delete the Current Configuration Files
-**DISCLAIMER** THIS IS DANGEROUS, MAKE SURE TO BACKUP ALL OF YOUR CONFIGURATION FILES
-
-#+begin_src shell
-sudo chmod +x bin/delete-kde-configuration-files.fish
-
-/usr/bin/env fish bin/delete-kde-configuration-files.fish
-#+end_src
-
-** Run the Sync and Setup Scripts
-The Sync Script will make symlinks in your home directory and the Setup Script will create symlinks outside of the home directory for some specific files.
-It is not needed to run the Sync Script AND the Setup Script as the Sync Script already runs the setup script.
-
-But first, make sure you have the KDE Compositor disabled:
-Go to System Settings > Hardware > Display and Monitor > Compositor and tick the 'Enable on Startup' option off:
-
-[[./.imgs/compositor.png]]
+** Run the Sync Script
+The Sync Script will make symlinks in your home directory.
 
 #+begin_src shell
 # make sure you are in the dotfiles directory:
@@ -75,11 +52,3 @@ sudo chmod +x bin/sync-dotfiles.sh
 
 Log out and Login again.
 
-** Enabling the Emacs Service
-So you can use the Emacs Client, you need to start the Emacs Daemon / Server. To do that, run this command:
-
-#+begin_src shell
-systemctl --user enable emacs.service --now
-#+end_src
-
-Now press Super + Shift + E and BAM! An Emacs Client

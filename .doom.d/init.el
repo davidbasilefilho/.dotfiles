@@ -80,17 +80,17 @@
        :checkers
        syntax              ; tasing you for every semicolon you forget
        ;; (spell +aspell) ; tasing you for misspelling mispelling
-       ;;grammar           ; tasing grammar mistake every you make
+       ;; grammar           ; tasing grammar mistake every you make
 
        :tools
-       ;;ansible
+       ;; ansible
        (debugger +lsp)   ; FIXME stepping through code, to help you add bugs
-       ;;direnv
+       ;; direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
-       ;;ein               ; tame Jupyter notebooks with emacs
+       ;; ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
-       ;;gist              ; interacting with github gists
+       ;; gist              ; interacting with github gists
        lookup              ; navigate your code and its documentation
        lsp
        magit             ; a git porcelain for Emacs
