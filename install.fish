@@ -2,7 +2,7 @@
 cd ~/.dotfiles/
 
 # make sure you have the permissions for it
-sudo chmod +x bin/sync-dotfiles.sh
+sudo chmod +x bin/sync-dotfiles
 
 # run it
 ./bin/sync-dotfiles

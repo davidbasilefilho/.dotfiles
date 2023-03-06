@@ -31,7 +31,7 @@ This is a list of the packages you need to use this repo.
 
 * Getting Started
 This section of the README is dedicated to setting up the dots.
-These instructions will be at [[./install.fish]]
+Run the [[install.fish]]
 
 ** Setting Up the Repo
 First, to get access to the files, so you can install the dots, clone the repo with git clone
@@ -44,7 +44,7 @@ The Sync Script will make symlinks in your home directory.
 cd ~/.dotfiles/
 
 # make sure you have the permissions for it
-sudo chmod +x bin/sync-dotfiles.sh
+sudo chmod +x bin/sync-dotfiles
 
 # run it
 ./bin/sync-dotfiles

@@ -37,6 +37,8 @@ if [[ ! -z $unmerged_files ]]; then
 else
    # Run stow to ensure all new dotfiles are linked
    stow .
+   rm -rf rf ~/.config/nvim/lua/custom
+   ln -s ~/.dotfiles/.config/nvchad/ ~/.config/nvim/lua/custom
 fi
 
 cd bin/
