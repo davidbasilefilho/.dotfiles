@@ -50,5 +50,4 @@ sudo chmod +x bin/sync-dotfiles
 ./bin/sync-dotfiles
 #+end_src
 
-Log out and Login again.
-
+Now Reboot.
