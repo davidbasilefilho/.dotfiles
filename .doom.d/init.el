@@ -178,8 +178,8 @@
        ;;(wanderlust +gmail)
 
        :app
-       ;;calendar
-       ;;emms
+       calendar
+       emms
        ;;everywhere        ; *leave* Emacs!? You must be joking
        ;;irc               ; how neckbeards socialize
        ;; rss        ; emacs as an RSS reader
