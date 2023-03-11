@@ -65,10 +65,39 @@ colors = [
     ["#313244", "#313244"],
 ]
 
-decoration_group = {
+border_focus_color = colors[7]
+border_normal_color = colors[0]
+
+decoration_group_black = {
     "decorations": [
         RectDecoration(
             colour=colors[12],
+            radius=default_radius,
+            filled=True,
+            padding_y=0,
+            group=True,
+        )
+    ],
+    "padding": 10,
+}
+
+decoration_group_yellow = {
+    "decorations": [
+        RectDecoration(
+            colour=colors[6],
+            radius=default_radius,
+            filled=True,
+            padding_y=0,
+            group=True,
+        )
+    ],
+    "padding": 10,
+}
+
+decoration_group_blue = {
+    "decorations": [
+        RectDecoration(
+            colour=colors[7],
             radius=default_radius,
             filled=True,
             padding_y=0,
@@ -161,7 +190,7 @@ keys = [
     ),
     # Open Programs
     Key([mod], "b", lazy.spawn(browser), desc="Open Browser"),
-    Key([mod], "e", lazy.spawn(filemanager), desc="Open File Manager"),
+    Key([mod, "shift"], "e", lazy.spawn(filemanager), desc="Open File Manager"),
     Key(
         [mod],
         "space",
@@ -241,8 +270,16 @@ keys = [
     ),
 ]
 
-group_names = "WWW DEV MUS GFX".split()
-groups = [Group(name, layout="columns") for name in group_names]
+group_names = "WWW DEV SCHOOL MUS GFX".split()
+# groups = [Group(name, layout="columns") for name in group_names]
+groups = [
+    Group(group_names[0], layout="max"),
+    Group(group_names[1], layout="columns"),
+    Group(group_names[2], layout="columns"),
+    Group(group_names[3], layout="max"),
+    Group(group_names[4], layout="colums"),
+]
+
 for i, name in enumerate(group_names):
     indx = str(i + 1)
     keys += [
@@ -252,23 +289,23 @@ for i, name in enumerate(group_names):
 
 layouts = [
     layout.Columns(
-        border_focus_stack=colors[7],
-        border_focus=colors[7],
-        border_normal_stack=colors[0],
-        border_normal=colors[0],
+        border_focus_stack=border_focus_color,
+        border_focus=border_focus_color,
+        border_normal_stack=border_normal_color,
+        border_normal=border_normal_color,
         border_on_single=True,
         margin=default_margin,
         border_width=default_border_width,
     ),
     layout.Max(
-        border_focus=colors[7],
-        border_normal=colors[0],
+        border_focus=border_focus_color,
+        border_normal=border_normal_color,
         border_width=default_border_width,
         margin=default_margin,
     ),
     layout.Floating(
-        border_focus=colors[7],
-        border_normal=colors[0],
+        border_focus=border_focus_color,
+        border_normal=border_normal_color,
         border_width=default_border_width,
     ),
     # Try more layouts by unleashing below layouts.
@@ -313,8 +350,8 @@ screens = [
                 widget.TextBox(
                     text="\ueabc",
                     fontsize=26,
-                    mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(myTerm)},
-                    **decoration_group
+                    mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(terminal)},
+                    **decoration_group_black,
                 ),
                 widget.GroupBox(
                     fontsize=12,
@@ -325,7 +362,7 @@ screens = [
                     borderwidth=3,
                     active=colors[3],
                     inactive=colors[2],
-                    rounded=False,
+                    rounded=True,
                     highlight_color=colors[1],
                     highlight_method="text",
                     this_current_screen_border=colors[7],
@@ -333,7 +370,12 @@ screens = [
                     other_current_screen_border=colors[7],
                     other_screen_border=colors[4],
                     foreground=colors[0],
-                    **decoration_group
+                    **decoration_group_black,
+                ),
+                widget.Sep(
+                    linewidth=0,
+                    **decoration_group_black,
+                    foreground=colors[0],
                 ),
                 widget.Sep(
                     linewidth=0,
@@ -343,15 +385,17 @@ screens = [
                 widget.CurrentLayoutIcon(
                     custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                     foreground=colors[3],
-                    scale=0.7,
-                    **decoration_group
+                    scale=0.6,
+                    **decoration_group_black,
                 ),
-                widget.CurrentLayout(foreground=colors[3], **decoration_group),
+                widget.CurrentLayout(foreground=colors[3], **decoration_group_black),
                 widget.Sep(
                     linewidth=0, padding=6, foreground=colors[0], background=colors[11]
                 ),
                 widget.WindowName(
-                    foreground=colors[6], background=colors[11], padding=0
+                    foreground=colors[12],
+                    background=colors[11],
+                    **decoration_group_blue,
                 ),
                 widget.Systray(background=colors[11], padding=5),
                 widget.Sep(
@@ -373,33 +417,17 @@ screens = [
                 widget.Sep(
                     linewidth=0, padding=6, foreground=colors[0], background=colors[11]
                 ),
-                widget.Prompt(
-                    background=colors[11],
-                    foreground=colors[6],
-                    cursor_color=colors[6],
-                    padding=6,
-                ),
-                widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0], background=colors[11]
-                ),
                 widget.Clock(
-                    foreground=colors[0],
+                    foreground=colors[3],
                     background=colors[11],
                     format="%H:%M | %d/%m/%Y",
-                    decorations=[
-                        RectDecoration(
-                            colour=colors[6],
-                            radius=8,
-                            filled=True,
-                            padding_y=1,
-                            padding_x=1,
-                            group=True,
-                        )
-                    ],
-                    padding=6,
+                    **decoration_group_black,
                 ),
                 widget.Sep(
-                    linewidth=0, padding=8, foreground=colors[0], background=colors[11]
+                    linewidth=0,
+                    **decoration_group_black,
+                    foreground=colors[3],
+                    background=colors[11],
                 ),
             ],
             24,

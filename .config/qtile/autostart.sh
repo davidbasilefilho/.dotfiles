@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-picom --config $HOME/.config/picom/picom.conf &
+picom --experimental-backends --config $HOME/.config/picom/picom.conf &
 /usr/bin/emacs --daemon &
 variety &
 jamesdsp -t &

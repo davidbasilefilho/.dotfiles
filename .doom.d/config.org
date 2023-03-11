@@ -6,28 +6,23 @@
 #+auto_tangle: t
 
 * Table of Contents :toc:
-- [[#doom-emacs][Doom Emacs]]
-- [[#user-information][User Information]]
-- [[#themes][Themes]]
-- [[#org-lsp-and-languages-configuration][Org, LSP and Languages Configuration]]
-- [[#unityel][unity.el]]
-- [[#minimap][minimap]]
-- [[#beacon][beacon]]
-- [[#key-bindings][Key bindings!]]
-- [[#org-auto-tangle][org-auto-tangle]]
+- [[#about-doom-emacs][ABOUT DOOM EMACS]]
+- [[#theming][THEMING]]
+- [[#org][ORG]]
+- [[#rust][RUST]]
+- [[#unityel][UNITY.EL]]
+- [[#minimap][MINIMAP]]
+- [[#beacon][BEACON]]
+- [[#org-auto-tangle][ORG-AUTO-TANGLE]]
+- [[#bookmarks][BOOKMARKS]]
+- [[#magit][MAGIT]]
+- [[#evil-mode][EVIL MODE]]
+- [[#doom][DOOM]]
 
-* Doom Emacs
+* ABOUT DOOM EMACS
 Doom is a configuration framework for GNU Emacs tailored for Emacs bankruptcy veterans who want less framework in their frameworks, a modicum of stability (and reproducibility) from their package manager, and the performance of a hand rolled config (or better). It can be a foundation for your own config or a resource for Emacs enthusiasts to learn more about our favorite operating system.
 
-* User Information
-This code sets up my name and email address.
-
-#+begin_src emacs-lisp
-(setq user-full-name "David Basile Filho"
-      user-mail-address "davidbasilefilho@gmail.com")
-#+end_src
-
-* Themes
+* THEMING
 Sets up the color scheme, the font and line numbers.
 
 #+begin_src emacs-lisp
@@ -36,24 +31,29 @@ Sets up the color scheme, the font and line numbers.
 (setq display-line-numbers-type 'relative)
 #+end_src
 
-* Org, LSP and Languages Configuration
-Configures org-mode, LSP and language-specific stuff.
+* ORG
+Configures ORG Mode.
 
 #+begin_src emacs-lisp
-;; Org
 (setq org-directory "~/org/")
-(setq org-image-actual-width nil)
 
-;; Shell Languages
 (org-babel-do-load-languages
 'org-babel-load-languages
 '((shell . t)))
 
-;; Rust
+;; Keybindings
+(map! :leader
+      "c v t" #'org-babel-tangle)
+#+end_src
+
+* RUST
+Configures Rust.
+
+#+begin_src emacs-lisp
 (setq lsp-rust-server 'rust-analyzer)
 #+end_src
 
-* unity.el
+* UNITY.EL
 A package that allows Emacs to integrate with the Unity Game Engine.
 
 #+begin_src emacs-lisp
@@ -62,36 +62,22 @@ A package that allows Emacs to integrate with the Unity Game Engine.
 (add-hook 'after-init-hook #'unity-mode)
 #+end_src
 
-* minimap
+* MINIMAP
 A package that displays a minimap on the right of the screen.
 
 #+begin_src emacs-lisp
 (setq minimap-window-location 'right)
-(setq minimap-mode 1)
+(setq minimap-mode nil)
 #+end_src
 
-* beacon
+* BEACON
 A cool effect that appears when the cursor moves a lot.
 
 #+begin_src emacs-lisp
 (beacon-mode 1)
 #+end_src
 
-* Key bindings!
-Adds or changes key bindings for Doom Emacs.
-
-#+begin_src emacs-lisp
-(map! :leader
-      "b ." #'evilnc-comment-or-uncomment-lines)
-(map! :leader
-      "r" #'evil-redo)
-(map! :leader
-      "u" #'evil-undo)
-(map! :leader
-      "c v t" #'org-babel-tangle)
-#+end_src
-
-* org-auto-tangle
+* ORG-AUTO-TANGLE
 A package that makes Emacs automatically tangle an org document after saving it.
 
 #+begin_src emacs-lisp
@@ -100,4 +86,57 @@ A package that makes Emacs automatically tangle an org document after saving it.
   :hook (org-mode . org-auto-tangle-mode)
   :config
   (setq org-auto-tangle-default t))
+
+;; Keybindings
 #+end_src
+
+* BOOKMARKS
+Bookmarks save whatever point of a file you want to save in a bookmarks file.
+
+| COMMAND         | DESCRIPTION                             | KEYBINDING |
+|-----------------+-----------------------------------------+------------|
+| list-bookmarks  | List Bookmarks                          | SPC b L    |
+| bookmark-set    | Set bookmark                            | SPC b m    |
+| bookmark-delete | Delete bookmark                         | SPC b M    |
+| bookmark-save   | Save current bookmarks to bookmark file | SPC b w    |
+
+#+begin_src emacs-lisp
+(setq bookmark-default-file "~/.doom.d/bookmarks")
+
+(map! :leader
+      (:prefix ("b". "buffer")
+       :desc "List bookmarks"                          "L" #'list-bookmarks
+       :desc "Set bookmark"                            "m" #'bookmark-set
+       :desc "Delete bookmark"                         "M" #'bookmark-delete
+       :desc "Save current bookmarks to bookmark file" "w" #'bookmark-save))
+
+#+end_src
+
+* MAGIT
+Configurating Magit, the Emacs Git interface. It's Magit!
+
+#+begin_src emacs-lisp
+(map! :leader
+      (:prefix ("g". "git")
+       :desc "Git stage modified"     "a" #'magit-stage-modified
+       :desc "Git push"               "p" #'magit-push))
+#+end_src
+
+* EVIL MODE
+Keybindings for Emacs Evil Mode.
+
+| COMMAND                           | DESCRIPTION                 | KEYBINDING |
+| evilnc-comment-or-uncomment-lines | Comment and uncomment lines | SPC b .    |
+| evil-redo                         | Redo the last change        | SPC r      |
+| evil-undo                         | Undo the last change        | SPC u      |
+
+#+begin_src emacs-lisp
+(map! :leader
+      "b ." #'evilnc-comment-or-uncomment-lines)
+(map! :leader
+      "r" #'evil-redo)
+(map! :leader
+      "u" #'evil-undo)
+#+end_src
+
+* DOOM
