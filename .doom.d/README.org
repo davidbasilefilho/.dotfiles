@@ -7,13 +7,15 @@
 
 * Table of Contents :toc:
 - [[#about-doom-emacs][ABOUT DOOM EMACS]]
-- [[#theming][THEMING]]
+- [[#doom-theme][DOOM THEME]]
+- [[#fonts][FONTS]]
 - [[#org][ORG]]
+  - [[#org-auto-tangle][org-auto-tangle]]
+  - [[#org-fonts][Org Fonts]]
 - [[#rust][RUST]]
 - [[#unityel][UNITY.EL]]
 - [[#minimap][MINIMAP]]
 - [[#beacon][BEACON]]
-- [[#org-auto-tangle][ORG-AUTO-TANGLE]]
 - [[#bookmarks][BOOKMARKS]]
 - [[#magit][MAGIT]]
 - [[#evil-mode][EVIL MODE]]
@@ -22,13 +24,32 @@
 * ABOUT DOOM EMACS
 Doom is a configuration framework for GNU Emacs tailored for Emacs bankruptcy veterans who want less framework in their frameworks, a modicum of stability (and reproducibility) from their package manager, and the performance of a hand rolled config (or better). It can be a foundation for your own config or a resource for Emacs enthusiasts to learn more about our favorite operating system.
 
-* THEMING
-Sets up the color scheme, the font and line numbers.
+* DOOM THEME
+Sets up the color scheme.
 
 #+begin_src emacs-lisp
-(setq doom-theme 'catppuccin)
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 16))
+(setq doom-theme 'doom-one)
 (setq display-line-numbers-type 'relative)
+#+end_src
+
+* FONTS
+Settings related to fonts within Doom Emacs:
+  - ‘doom-font’ – standard monospace font that is used for most things in Emacs.
+  - ‘doom-variable-pitch-font’ – variable font which is useful in some Emacs plugins.
+  - ‘doom-big-font’ – used in doom-big-font-mode; useful for presentations.
+  - ‘font-lock-comment-face’ – for comments.
+  - ‘font-lock-keyword-face’ – for keywords with special significance like ‘setq’ in elisp.
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
+      doom-variable-pitch-font (font-spec :family "Ubuntu Nerd Font" :size 15)
+      doom-big-font (font-spec :family "JetBrains Mono Nerd Font" :size 24))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
 #+end_src
 
 * ORG
@@ -37,13 +58,54 @@ Configures ORG Mode.
 #+begin_src emacs-lisp
 (setq org-directory "~/org/")
 
-(org-babel-do-load-languages
-'org-babel-load-languages
-'((shell . t)))
-
 ;; Keybindings
 (map! :leader
-      "c v t" #'org-babel-tangle)
+      :desc "Org Babel Tangle" "m B" #'org-babel-tangle)
+#+end_src
+
+** org-auto-tangle
+A package that makes Emacs automatically tangle an org document after saving it.
+
+#+begin_src emacs-lisp
+(use-package! org-auto-tangle
+  :defer t
+  :hook (org-mode . org-auto-tangle-mode)
+  :config
+  (setq org-auto-tangle-default t))
+
+(defun insert-auto-tangle-tag ()
+  "Insert auto-tangle tag in a literate config."
+  (interactive)
+  (evil-org-open-below 1)
+  (insert "#+auto_tangle: t ")
+  (evil-force-normal-state))
+
+(map! :leader
+      :desc "Insert auto_tangle tag" "i a" #'insert-auto-tangle-tag)
+#+end_src
+
+** Org Fonts
+Font Configuration for Org.
+
+#+begin_src emacs-lisp
+(defun org-colors-doom-one()
+  "Enable Doom One colors for Org headers."
+  (interactive)
+  (dolist
+      (face
+       '((org-level-1 1.35 "#51afef" ultra-bold)
+         (org-level-2 1.3  "#c678dd" extra-bold)
+         (org-level-3 1.25 "#98be65" bold)
+         (org-level-4 1.2  "#da8548" semi-bold)
+         (org-level-5 1.15 "#5699af" normal)
+         (org-level-6 1.1  "#a9a1e1" normal)
+         (org-level-7 1.05 "#46d9ff" normal)
+         (org-level-8 1.0  "#ff6c6b" normal)))
+    (set-face-attribute (nth 0 face) nil :font doom-font :weight (nth 3 face) :height (nth 1 face) :foreground (nth 2 face)))
+    (set-face-attribute 'org-table nil :font doom-font :weight 'normal :height 1.0 :foreground "#bfafdf"))
+
+;; Load our desired org-colors-* theme on startup
+;;(org-colors-doom-one)
 #+end_src
 
 * RUST
@@ -77,19 +139,6 @@ A cool effect that appears when the cursor moves a lot.
 (beacon-mode 1)
 #+end_src
 
-* ORG-AUTO-TANGLE
-A package that makes Emacs automatically tangle an org document after saving it.
-
-#+begin_src emacs-lisp
-(use-package! org-auto-tangle
-  :defer t
-  :hook (org-mode . org-auto-tangle-mode)
-  :config
-  (setq org-auto-tangle-default t))
-
-;; Keybindings
-#+end_src
-
 * BOOKMARKS
 Bookmarks save whatever point of a file you want to save in a bookmarks file.
 
@@ -118,8 +167,9 @@ Configurating Magit, the Emacs Git interface. It's Magit!
 #+begin_src emacs-lisp
 (map! :leader
       (:prefix ("g". "git")
-       :desc "Git stage modified"     "a" #'magit-stage-modified
-       :desc "Git push"               "p" #'magit-push))
+       :desc "Magit stage modified"     "a" #'magit-stage-modified
+       :desc "Magit stage untracked"    "u" #'magit-stage-untracked
+       :desc "Magit push"               "p" #'magit-push))
 #+end_src
 
 * EVIL MODE

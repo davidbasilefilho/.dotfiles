@@ -1,3 +1,44 @@
+#+title: Qtile Configuration
+#+author: David Basile Filho
+#+startup: showeverything
+#+description: An org document for my Qtile Configuration
+#+auto_tangle: t
+#+property: header-args :tangle config.py
+
+* TABLE OF CONTENTS :toc:
+- [[#about-this-config][ABOUT THIS CONFIG]]
+- [[#about-qtile][ABOUT QTILE]]
+- [[#features-of-qtile][FEATURES OF QTILE]]
+- [[#imports][IMPORTS]]
+- [[#variables][VARIABLES]]
+  - [[#preferences][Preferences]]
+  - [[#home-directory][Home Directory]]
+  - [[#colors][Colors]]
+  - [[#decoration-groups][Decoration Groups]]
+- [[#keybindings][KEYBINDINGS]]
+
+* ABOUT THIS CONFIG
+The following comments are the copyright and licensing information from the default
+  qtile config. Copyright (c) 2010 Aldo Cortesi, 2010, 2014 dequis, 2012 Randall Ma,
+  2012-2014 Tycho Andersen, 2012 Craig Barnes, 2013 horsik, 2013 Tao Sauvage
+Modified by David Basile Filho
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to  permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+* ABOUT QTILE
+Qtile is a full-featured, hackable tiling window manager written in Python. Qtile is simple, small, and extensible. It is easy to write your own layouts, widgets, and built-in commands. It is written and configured entirely in Python, which means you can leverage the full power and flexibility of the language to make it fit your needs.
+
+* FEATURES OF QTILE
+- Simple, small and extensible. It's easy to write your own layouts, widgets and commands.
+- Configured in Python.
+- Command shell that allows all aspects of Qtile to be managed and inspected.
+- Complete remote scriptability - write scripts to set up workspaces, manipulate windows, update status bar widgets and more.
+- Qtile's remote scriptability makes it one of the most thoroughly unit-tested window managers around.
+
+* IMPORTS
+Imports some python modules / libraries that must be included for this config to work. Keep in mind that you must have [[https://github.com/elParaguayo/qtile-extras][qtile-extras]] in your PC.
+
+#+begin_src python
 import os
 import re
 import socket
@@ -11,7 +52,15 @@ from libqtile.utils import guess_terminal
 from typing import List
 from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration
+#+end_src
 
+* VARIABLES
+Variables that contain data used throughout the config
+
+** Preferences
+Variables that contain preferences like the modifier key, my terminal, default sizes, etc.
+
+#+begin_src python
 mod = "mod4"
 terminal = "alacritty"
 browser = "brave-browser"
@@ -23,9 +72,19 @@ default_radius = 8
 
 border_focus_color = colors[7]
 border_normal_color = colors[0]
+#+end_src
 
+** Home Directory
+Gets the home directory of your PC to load stuff.
+
+#+begin_src python
 home = os.path.expanduser("~")
+#+end_src
 
+** Colors
+Predefined colors made by the [[https://github.com/catppuccin/catppuccin][Catppuccin]] development team.
+
+#+begin_src python
 colors = [
     ["#1E1E2E", "#1E1E2E"],
     ["#45475a", "#45475a"],
@@ -41,7 +100,12 @@ colors = [
     ["#00000000", "#00000000"],
     ["#313244", "#313244"],
 ]
+#+end_src
 
+** Decoration Groups
+This is used to combine the RectDecoration of multiple widgets.
+
+#+begin_src python
 decoration_group_black = {
     "decorations": [
         RectDecoration(
@@ -80,7 +144,17 @@ decoration_group_blue = {
     ],
     "padding": 10,
 }
+#+end_src
 
+* KEYBINDINGS
+IMPORTANT - Keep in mind that I the Dvorak keyboard layout, so I adapted the HJKL keys in my Qtile config.
+
+| KEYBINDINGS     | ACTION        |
+|-----------------+---------------|
+| MODKEY + RETURN | Open Terminal |
+|                 |               |
+
+#+begin_src python
 keys = [
     # A list of available commands that can be bound to keys can be found
     # at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -298,7 +372,7 @@ screens = [
                     text="\ueabc",
                     fontsize=26,
                     mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(terminal)},
-                    **decoration_group_black,
+                    ,**decoration_group_black,
                 ),
                 widget.GroupBox(
                     fontsize=12,
@@ -317,11 +391,11 @@ screens = [
                     other_current_screen_border=colors[7],
                     other_screen_border=colors[4],
                     foreground=colors[0],
-                    **decoration_group_black,
+                    ,**decoration_group_black,
                 ),
                 widget.Sep(
                     linewidth=0,
-                    **decoration_group_black,
+                    ,**decoration_group_black,
                     foreground=colors[0],
                 ),
                 widget.Sep(
@@ -333,7 +407,7 @@ screens = [
                     custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                     foreground=colors[3],
                     scale=0.6,
-                    **decoration_group_black,
+                    ,**decoration_group_black,
                 ),
                 widget.CurrentLayout(foreground=colors[3], **decoration_group_black),
                 widget.Sep(
@@ -367,11 +441,11 @@ screens = [
                     foreground=colors[3],
                     background=colors[11],
                     format="%H:%M | %d/%m/%Y",
-                    **decoration_group_black,
+                    ,**decoration_group_black,
                 ),
                 widget.Sep(
                     linewidth=0,
-                    **decoration_group_black,
+                    ,**decoration_group_black,
                     foreground=colors[3],
                     background=colors[11],
                 ),
@@ -405,7 +479,7 @@ cursor_warp = False
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
-        *layout.Floating.default_float_rules,
+        ,*layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
@@ -440,3 +514,4 @@ def start_once():
 # We choose LG3D to maximize irony: it is a 3D non-reparenting WM written in
 # java that happens to be on java's whitelist.
 wmname = "LG3D"
+#+end_src
