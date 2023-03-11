@@ -205,47 +205,36 @@ for i, name in enumerate(group_names):
         Key([mod, "shift"], indx, lazy.window.togroup(name)),
     ]
 
+layout_theme = {
+    "border_width": 6,
+    "margin": 8,
+    "border_focus": colors[7],
+    "border_normal": colors[0]
+}
+
 layouts = [
     layout.Columns(
-        border_focus_stack=border_focus_color,
-        border_focus=border_focus_color,
-        border_normal_stack=border_normal_color,
-        border_normal=border_normal_color,
-        border_on_single=True,
-        margin=default_margin,
-        border_width=default_border_width,
+        **layout_theme,
+        border_on_single = True
     ),
     layout.Max(
-        border_focus=border_focus_color,
-        border_normal=border_normal_color,
-        border_width=default_border_width,
-        margin=default_margin,
+        **layout_theme
     ),
     layout.Floating(
-        border_focus=border_focus_color,
-        border_normal=border_normal_color,
-        border_width=default_border_width,
+        **layout_theme
     ),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    # layout.Bsp(border_focus=colors[7],
-    #           border_normal=colors[0],
-    #           border_width=default_border_width,
-    #           margin=default_margin, border_on_single=True),
-    # layout.Spiral(border_focus=primary_color,
-    #               border_normal=unfocused_border_color,
-    #               border_width=default_border_width,
-    #               margin=default_margin)
+    layout.Bsp(**layout_theme, border_on_single = True),
+    layout.Spiral(**layout_theme),
     # layout.Matrix(),
     # layout.MonadTall(),
-    # layout.MonadWide(),
+    layout.MonadWide(**layout_theme),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
-
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
@@ -256,19 +245,12 @@ widget_defaults = dict(
     background=colors[11],
 )
 
-
-def no_text(text):
-    return ""
-
-
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.TextBox(
-                    text="\ueabc",
-                    fontsize=26,
-                    mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(terminal)},
+                widget.Sep(
+                    linewidth=0,
                     **decoration_group_black,
                 ),
                 widget.GroupBox(
@@ -314,9 +296,12 @@ screens = [
                     foreground=colors[12],
                     background=colors[11],
                 ),
-                widget.Systray(background=colors[11], padding=5),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0], background=colors[11]
+                    linewidth=0, **decoration_group_yellow, foreground=colors[0], background=colors[11]
+                ),
+                widget.Systray(background=colors[11], **decoration_group_yellow),
+                widget.Sep(
+                    linewidth=0, **decoration_group_yellow, foreground=colors[0], background=colors[11]
                 ),
                 widget.Volume(
                     foreground=colors[7],
@@ -396,14 +381,9 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
-# When using the Wayland backend, this can be used to configure input devices.
-wl_input_rules = None
-
-
 @hook.subscribe.startup_once
 def start_once():
     subprocess.call([home + "/.config/qtile/autostart.sh"])
-
 
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the

@@ -16,6 +16,16 @@
   - [[#colors][Colors]]
   - [[#decoration-groups][Decoration Groups]]
 - [[#keybindings][KEYBINDINGS]]
+- [[#groups][GROUPS]]
+- [[#layout-theme][LAYOUT THEME]]
+- [[#layouts][LAYOUTS]]
+- [[#prompt][PROMPT]]
+- [[#widget-defaults][WIDGET DEFAULTS]]
+- [[#bar][BAR]]
+- [[#drag-windows][DRAG WINDOWS]]
+- [[#float-rules][FLOAT RULES]]
+- [[#startup-programs][STARTUP PROGRAMS]]
+- [[#java-fix][JAVA FIX]]
 
 * ABOUT THIS CONFIG
 The following comments are the copyright and licensing information from the default
@@ -147,25 +157,29 @@ decoration_group_blue = {
 #+end_src
 
 * KEYBINDINGS
-IMPORTANT - Keep in mind that I the Dvorak keyboard layout, so I adapted the HJKL keys in my Qtile config.
+IMPORTANT - Keep in mind that I the Dvorak keyboard layout, so I adapted the HJKL keys to HTNS in my Qtile config.
 
-| KEYBINDINGS          | ACTION                               |
-|----------------------+--------------------------------------|
-| MODKEY + RETURN      | Open Terminal                        |
-| MODKEY + SPACE       | Open Rofi                            |
-| MODKEY + TAB         | Cycle layouts                        |
-| MODKEY + SHIFT + C   | Close focused window                 |
-| MODKEY + F           | Make focused window fullscreen       |
-| MODKEY + SHIFT + F   | Make focused window float            |
-| MODKEY + 1-5         | Switch focus to workspace 1-5        |
-| MODKEY + SHIFT + 1-5 | Send focused window to workspace 1-5 |
-| MODKEY + SHIFT + R   | Restarts Qtile                       |
-| MODKEY + B           | Opens browser                        |
-| MODKEY + SHIFT + E   | Opens the file manager               |
-| MODKEY + E E         | Opens Emacsclient                    |
-| MODKEY + E B         | Opens Ibuffer                        |
-| MODKEY + E D         | Opens Dired                          |
-| MODKEY + SHIFT + P   | Opens Rofi Powermenu                 |
+| KEYBINDINGS            | ACTION                                    |
+|------------------------+-------------------------------------------|
+| MODKEY + RETURN        | Open Terminal                             |
+| MODKEY + HTNS          | Focus on window on the Left/Down/Up/Right |
+| MODKEY + SHIFT + HTNS  | Move the window to the Left/Down/Up/Right |
+| MODKEY + CTRL + HTNS   | Grow the window to the Left/Down/Up/Right |
+| MODKEY + SPACE         | Open Rofi Launcher                        |
+| MODKEY + SHIFT + P     | Opens Rofi Powermenu                      |
+| MODKEY + TAB           | Cycle layouts                             |
+| MODKEY + SHIFT + C     | Close focused window                      |
+| MODKEY + F             | Make focused window fullscreen            |
+| MODKEY + SHIFT + F     | Make focused window float                 |
+| MODKEY + 1-5           | Switch focus to workspace 1-5             |
+| MODKEY + SHIFT + 1-5   | Send focused window to workspace 1-5      |
+| MODKEY + SHIFT + R     | Restarts Qtile                            |
+| MODKEY + B             | Opens browser                             |
+| MODKEY + SHIFT + E     | Opens the file manager                    |
+| MODKEY + E E           | Opens Emacsclient                         |
+| MODKEY + E B           | Opens Ibuffer                             |
+| MODKEY + E D           | Opens Dired                               |
+| MODKEY + SHIFT + SPACE | Next window on max layout                 |
 
 #+begin_src python
 keys = [
@@ -277,6 +291,9 @@ keys = [
 ]
 #+end_src
 
+* GROUPS
+Groups are actually workspaces.
+
 #+begin_src python
 group_names = "WWW DEV SCHOOL MUS GFX".split()
 groups = [
@@ -293,71 +310,78 @@ for i, name in enumerate(group_names):
         Key([mod], indx, lazy.group[name].toscreen()),
         Key([mod, "shift"], indx, lazy.window.togroup(name)),
     ]
+#+end_src
 
+* LAYOUT THEME
+Stuff like border width, margins, border colors, etc.
+
+#+begin_src python
+layout_theme = {
+    "border_width": 6,
+    "margin": 8,
+    "border_focus": colors[7],
+    "border_normal": colors[0]
+}
+#+end_src
+
+* LAYOUTS
+Sets up the layouts.
+
+#+begin_src python
 layouts = [
     layout.Columns(
-        border_focus_stack=border_focus_color,
-        border_focus=border_focus_color,
-        border_normal_stack=border_normal_color,
-        border_normal=border_normal_color,
-        border_on_single=True,
-        margin=default_margin,
-        border_width=default_border_width,
+        ,**layout_theme,
+        border_on_single = True
     ),
     layout.Max(
-        border_focus=border_focus_color,
-        border_normal=border_normal_color,
-        border_width=default_border_width,
-        margin=default_margin,
+        ,**layout_theme
     ),
     layout.Floating(
-        border_focus=border_focus_color,
-        border_normal=border_normal_color,
-        border_width=default_border_width,
+        ,**layout_theme
     ),
-    # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
-    # layout.Bsp(border_focus=colors[7],
-    #           border_normal=colors[0],
-    #           border_width=default_border_width,
-    #           margin=default_margin, border_on_single=True),
-    # layout.Spiral(border_focus=primary_color,
-    #               border_normal=unfocused_border_color,
-    #               border_width=default_border_width,
-    #               margin=default_margin)
+    layout.Bsp(**layout_theme, border_on_single = True),
+    layout.Spiral(**layout_theme),
     # layout.Matrix(),
     # layout.MonadTall(),
-    # layout.MonadWide(),
+    layout.MonadWide(**layout_theme),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
     # layout.Zoomy(),
 ]
+#+end_src
 
+* PROMPT
+The style for the prompt widget.
 
+#+begin_src python
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
+#+end_src
 
+* WIDGET DEFAULTS
+Default configuration for the widgets.
+
+#+begin_src python
 widget_defaults = dict(
     font="Ubuntu Nerd Font Bold",
     fontsize=12,
     padding=2,
     background=colors[11],
 )
+#+end_src
 
+* BAR
+Bar customization, widgets, decorations, etc.
 
-def no_text(text):
-    return ""
-
-
+#+begin_src python
 screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.TextBox(
-                    text="\ueabc",
-                    fontsize=26,
-                    mouse_callbacks={"Button1": lambda: qtile.cmd_spawn(terminal)},
+                widget.Sep(
+                    linewidth=0,
                     ,**decoration_group_black,
                 ),
                 widget.GroupBox(
@@ -403,9 +427,12 @@ screens = [
                     foreground=colors[12],
                     background=colors[11],
                 ),
-                widget.Systray(background=colors[11], padding=5),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0], background=colors[11]
+                    linewidth=0, **decoration_group_yellow, foreground=colors[0], background=colors[11]
+                ),
+                widget.Systray(background=colors[11], **decoration_group_yellow),
+                widget.Sep(
+                    linewidth=0, **decoration_group_yellow, foreground=colors[0], background=colors[11]
                 ),
                 widget.Volume(
                     foreground=colors[7],
@@ -442,7 +469,12 @@ screens = [
         ),
     ),
 ]
+#+end_src
 
+* DRAG WINDOWS
+Setting up the mouse controls for floating windows.
+
+#+begin_src python
 # Drag floating layouts.
 mouse = [
     Drag(
@@ -462,7 +494,12 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = True
 bring_front_click = False
 cursor_warp = False
+#+end_src
 
+* FLOAT RULES
+Make specific windows float.
+
+#+begin_src python
 floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see the wm class and name of an X client.
@@ -484,16 +521,21 @@ reconfigure_screens = True
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
 auto_minimize = True
+#+end_src
 
-# When using the Wayland backend, this can be used to configure input devices.
-wl_input_rules = None
+* STARTUP PROGRAMS
+Programs that run on startup.
 
-
+#+begin_src python
 @hook.subscribe.startup_once
 def start_once():
     subprocess.call([home + "/.config/qtile/autostart.sh"])
+#+end_src
 
+* JAVA FIX
+Fix a bug on Java applications.
 
+#+begin_src python
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting
