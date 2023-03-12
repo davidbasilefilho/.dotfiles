@@ -36,7 +36,7 @@ This section of the README is dedicated to setting up the dots.
 Run the [[file:install.sh][install.sh]]
 
 ** Setting Up the Repo
-First, to get access to the files, so you can install the dots, clone the repo with ~git clone https://github.com/DavidBF16/.dotfiles~.
+First, to get access to the files, so you can install the dots, clone the repo with ~git clone https://github.com/DavidBF16/.dotfiles ~/.dotfiles~.
 
 ** Run the Sync Script
 The Sync Script will make symlinks in your home directory.
