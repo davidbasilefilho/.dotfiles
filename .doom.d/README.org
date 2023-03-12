@@ -1,4 +1,4 @@
-#+title: Doom Emacs Configuration
+#+title: DOOM EMACS CONFIG
 #+author: David Basile Filho
 #+startup: showeverything
 #+description: An org document for David Basile Filho's Doom Emacs Configurations

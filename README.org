@@ -1,4 +1,4 @@
-#+title: Basile's Dots
+#+title: BASILE'S DOTS
 #+author: David Basile Filho
 #+description: An org document that contains instructions to use my .dotfiles repo
 #+startup: showeverything
@@ -16,7 +16,7 @@ These are my dotfiles! They include Doom Emacs, Latte Dock, Alacritty, Oh My Pos
 * DEPENDENCIES
 This is a list of the packages you need to use this repo.
 
-- [[https://kernel.org][GNU/Linux]] (I use Fedora 37);
+- [[https://kernel.org][GNU/Linux]] (I use Fedora);
 - [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://github.com/doomemacs/doomemacs][Doom Emacs]] (install on ~/.emacs.d);
 - [[https://neovim.io][Neovim]], [[https://nvchad.com][NvChad]] and [[https://neovide.dev][Neovide]];
 - The JetBrains Mono [[https://nerdfonts.com][Nerd Font]];
@@ -27,6 +27,8 @@ This is a list of the packages you need to use this repo.
 - [[https://www.gnu.org/software/stow/][GNU Stow]] (So you can manage the dots);
 - [[https://github.com/alacritty/alacritty/][Alacritty]] Terminal Emulator;
 - [[https://github.com/PapirusDevelopmentTeam/papirus-icon-theme][Papirus Icon Theme]];
+- [[https://starship.rs][Starship]] Prompt;
+- [[https://github.com/LinusDierheimer/fastfetch][Fastfetch]];
 - The [[https://github.com/catppuccin/catppuccin][Catppuccin]] Color Scheme!
 
 * GETTING STARTED
@@ -34,7 +36,7 @@ This section of the README is dedicated to setting up the dots.
 Run the [[file:install.sh][install.sh]]
 
 ** Setting Up the Repo
-First, to get access to the files, so you can install the dots, clone the repo with git clone
+First, to get access to the files, so you can install the dots, clone the repo with ~git clone https://github.com/DavidBF16/.dotfiles~.
 
 ** Run the Sync Script
 The Sync Script will make symlinks in your home directory.

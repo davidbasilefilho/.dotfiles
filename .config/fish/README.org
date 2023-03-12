@@ -5,20 +5,19 @@
 #+property: header-args :tangle config.fish
 #+auto_tangle: t
 
-* Table of Contents :toc:
-- [[#fish-shell][Fish Shell]]
-- [[#config-file][Config File]]
-  - [[#aliases][Aliases]]
-  - [[#defaults][Defaults]]
-  - [[#path][PATH]]
-  - [[#no-greeting-message][No Greeting Message]]
-  - [[#prompt-and-programs][Prompt and Programs]]
+* TABLE OF CONTENTS :toc:
+- [[#fish-shell][FISH SHELL]]
+- [[#aliases][ALIASES]]
+- [[#default][DEFAULT]]
+- [[#path][PATH]]
+- [[#no-greeting-message][NO GREETING MESSAGE]]
+- [[#starship-prompt][STARSHIP PROMPT]]
+- [[#fun-programs][FUN PROGRAMS]]
 
-* Fish Shell
+* FISH SHELL
 The friendly interactive shell is a Unix shell that attempts to be more interactive and user-friendly than those with a longer history or those formulated as function-compatible replacements for the aforementioned. The design goal of fish is to give the user a rich set of powerful features in a way that is easy to discover, remember, and use.
 
-* Config File
-** Aliases
+* ALIASES
 Some aliases I created for commands I use quite a bit.
 
 #+begin_src shell
@@ -28,18 +27,16 @@ alias rm='rm -i'
 alias cp='cp -i'
 alias ls='exa -la'
 alias em='emacs -nw'
-
-alias emacsclient="emacsclient -c -a 'emacs'"
 #+end_src
 
-** Defaults
+* DEFAULT
 Sets some default environment variables that are not PATH.
 
 #+begin_src shell
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib64"
 #+end_src
 
-** PATH
+* PATH
 Adds some paths to the PATH environment variable.
 
 #+begin_src shell
@@ -51,18 +48,23 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 #+end_src
 
-** No Greeting Message
-Gets rid of the fish shell's greeting message
+* NO GREETING MESSAGE
+Gets rid of the fish shell's annoying greeting message.
 
 #+begin_src shell
 set -U fish_greeting
 #+end_src
 
-** Prompt and Programs
-Sets up the Oh My Posh prompt and runs fastfetch
+* STARSHIP PROMPT
+Sets up the Starship prompt and runs fastfetch.
 
 #+begin_src shell
-# oh-my-posh init fish --config /home/basile/.config/oh-my-posh/star.omp.json | source
 starship init fish | source
+#+end_src
+
+* FUN PROGRAMS
+Runs some cool programs like fastfetch.
+
+#+begin_src shell
 fastfetch
 #+end_src
