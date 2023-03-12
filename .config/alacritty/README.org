@@ -1,25 +1,85 @@
+#+title: ALACRITTY CONFIG
+#+author: David Basile Filho
+#+startup: showeverything
+#+description: My Allacritty Config
+#+auto_tangle: t
+#+property: header-args :tangle alacritty.yml
+
+* TABLE OF CONTENTS :toc:
+- [[#about-this-config][ABOUT THIS CONFIG]]
+- [[#environment-variables][ENVIRONMENT VARIABLES]]
+- [[#dimensions][DIMENSIONS]]
+- [[#padding][PADDING]]
+- [[#opacity][OPACITY]]
+- [[#decorations][DECORATIONS]]
+- [[#window-information][WINDOW INFORMATION]]
+- [[#scrolling][SCROLLING]]
+- [[#font-configuration][FONT CONFIGURATION]]
+- [[#colors][COLORS]]
+- [[#login-shell][LOGIN SHELL]]
+- [[#cursor-style][CURSOR STYLE]]
+- [[#live-config-reload][LIVE CONFIG RELOAD]]
+- [[#keybindings][KEYBINDINGS]]
+
+* ABOUT THIS CONFIG
+Alacritty is a modern GPU-accelerated free and open-source terminal emulator that comes with sensible defaults, but allows for extensive configuration.
+    - Alacritty Official Website: https://alacritty.org
+    - YAML Official Website: https://yaml.org
+
+This is the alacritty configuration of David Basile Filho.
+    - My GitHub: https://github.com/DavidBF16
+
+* ENVIRONMENT VARIABLES
+Defines environment variables like ~$TERM~.
+
+#+begin_src yaml
 env:
   # This value is used to set the `$TERM` environment variable for
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
   TERM: alacritty
+#+end_src
 
+* DIMENSIONS
+Defines the window dimensions with columns and lines (not pixels).
+
+#+begin_src yaml
 window:
   dimensions:
     columns: 80
     lines: 24
+#+end_src
 
+* PADDING
+Defines the padding amount.
+
+#+begin_src yaml
   padding:
     x: 8
     y: 8
 
   dynamic_padding: false
+#+end_src
 
+* OPACITY
+Defines the opacity amount. I define opacity in my Picom config so this is not very useful.
+
+#+begin_src yaml
   opacity: 1.0
+#+end_src
 
+* DECORATIONS
+Removes the window decorations.
+
+#+begin_src yaml
   decorations: none
+#+end_src
 
+* WINDOW INFORMATION
+Stuff like window titles and window classes.
+
+#+begin_src yaml
   dynamic_title: true
 
   title: Alacritty
@@ -27,10 +87,20 @@ window:
   class:
     instance: Alacritty
     general: Alacritty
+#+end_src
 
+* SCROLLING
+Defines the max scrolling amount.
+
+#+begin_src yaml
 scrolling:
   history: 5000
+#+end_src
 
+* FONT CONFIGURATION
+Configures fonts and font sizes. Changes require restart.
+
+#+begin_src yaml
 font:
   # Normal (roman) font face
   normal:
@@ -67,7 +137,12 @@ font:
     y: 0
 
 draw_bold_text_with_bright_colors: true
+#+end_src
 
+* COLORS
+Uses the [[https://github.com/catppuccin/alacritty][Catppuccin]] color scheme.
+
+#+begin_src yaml
 colors:
     primary:
         background: "#1E1E2E" # base
@@ -146,12 +221,22 @@ colors:
     indexed_colors:
         - { index: 16, color: "#FAB387" }
         - { index: 17, color: "#F5E0DC" }
+#+end_src
 
+* LOGIN SHELL
+Sets the login shell to [[https://fishshell.com/][fish]].
+
+#+begin_src yaml
 shell:
   program: /usr/bin/fish
   args:
     - --login
+#+end_src
 
+* CURSOR STYLE
+Sets the cursor style to ~Beam~.
+
+#+begin_src yaml
 cursor:
   # Cursor style
   #
@@ -160,9 +245,28 @@ cursor:
   #   - _ Underline
   #   - | Beam
   style: Beam
+#+end_src
 
+* LIVE CONFIG RELOAD
+Reload config when changes occur. Changes Require Restart.
+
+#+begin_src yaml
 live_config_reload: true
+#+end_src
 
+* KEYBINDINGS
+Sets keybindings for Alacritty.
+
+| KEYBINDING       | ACTION             |
+|------------------+--------------------|
+| CTRL + SHIFT + C | Copy               |
+| CTRL + SHIFT + V | Paste              |
+| CTRL + +         | Increase font size |
+| CTRL + -         | Decrease font size |
+| CTRL + 0         | Reset font size    |
+| CTRL + L         | Clear Terminal     |
+
+#+begin_src yaml
 key_bindings:
   - { key: V,         mods: Control|Shift, action: Paste                       }
 
@@ -195,3 +299,4 @@ key_bindings:
   - { key: Home,      mods: Shift,         action: ScrollToTop,    mode: ~Alt  }
 
   - { key: End,       mods: Shift,         action: ScrollToBottom, mode: ~Alt  }
+#+end_src
