@@ -2,24 +2,24 @@
 #+author: David Basile Filho
 #+description: An org document that contains instructions to use my .dotfiles repo
 #+startup: showeverything
-#+property: header-args :tangle install.fish
+#+property: header-args :tangle install.sh
 #+auto_tangle: t
 
 These are my dotfiles! They include Doom Emacs, Latte Dock, Alacritty, Oh My Posh and Picom configurations.
 
-* Table of Contents :toc:
-- [[#dependencies][Dependencies]]
-- [[#getting-started][Getting Started]]
+* TABLE OF CONTENTS :toc:
+- [[#dependencies][DEPENDENCIES]]
+- [[#getting-started][GETTING STARTED]]
   - [[#setting-up-the-repo][Setting Up the Repo]]
   - [[#run-the-sync-script][Run the Sync Script]]
 
-* Dependencies
+* DEPENDENCIES
 This is a list of the packages you need to use this repo.
 
 - [[https://kernel.org][GNU/Linux]] (I use Fedora 37);
 - [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://github.com/doomemacs/doomemacs][Doom Emacs]] (install on ~/.emacs.d);
 - [[https://neovim.io][Neovim]], [[https://nvchad.com][NvChad]] and [[https://neovide.dev][Neovide]];
-  The JetBrains Mono [[https://nerdfonts.com][Nerd Font]];
+- The JetBrains Mono [[https://nerdfonts.com][Nerd Font]];
 - [[https://github.com/yshui/picom][Picom]];
 - [[https://qtile.org][Qtile]] and [[https://github.com/elParaguayo/qtile-extras][qtile-extras]];
 - [[- https://github.com/davatorium/rofi][Rofi]] and the [[https://github.com/adi1090x/rofi][Rofi Collection]];
@@ -29,17 +29,19 @@ This is a list of the packages you need to use this repo.
 - [[https://github.com/PapirusDevelopmentTeam/papirus-icon-theme][Papirus Icon Theme]];
 - The [[github:catppuccin/catppuccin][Catppuccin]] Color Scheme!
 
-* Getting Started
+* GETTING STARTED
 This section of the README is dedicated to setting up the dots.
-Run the [[install.fish]]
+Run the
 
 ** Setting Up the Repo
 First, to get access to the files, so you can install the dots, clone the repo with git clone
 
 ** Run the Sync Script
 The Sync Script will make symlinks in your home directory.
+One alternative to this is to run ~stow .~
 
 #+begin_src shell
+#!/usr/bin/env bash
 # make sure you are in the dotfiles directory:
 cd ~/.dotfiles/
 

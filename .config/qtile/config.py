@@ -21,8 +21,8 @@ default_border_width = 6
 default_margin = 8
 default_radius = 8
 
-border_focus_color = colors[7]
-border_normal_color = colors[0]
+# border_focus_color = colors[7]
+# border_normal_color = colors[0]
 
 home = os.path.expanduser("~")
 
@@ -38,48 +38,9 @@ colors = [
     ["#cba6f7", "#cba6f7"],
     ["#89dceb", "#89dceb"],
     ["#B4BEFE", "#B4BEFE"],
-    ["#00000000", "#00000000"], # Transparent
     ["#313244", "#313244"],
+    ["#00000000", "#00000000"], # Transparent
 ]
-
-decoration_group_black = {
-    "decorations": [
-        RectDecoration(
-            colour=colors[12],
-            radius=default_radius,
-            filled=True,
-            padding_y=0,
-            group=True,
-        )
-    ],
-    "padding": 10,
-}
-
-decoration_group_yellow = {
-    "decorations": [
-        RectDecoration(
-            colour=colors[6],
-            radius=default_radius,
-            filled=True,
-            padding_y=0,
-            group=True,
-        )
-    ],
-    "padding": 10,
-}
-
-decoration_group_blue = {
-    "decorations": [
-        RectDecoration(
-            colour=colors[7],
-            radius=default_radius,
-            filled=True,
-            padding_y=0,
-            group=True,
-        )
-    ],
-    "padding": 10,
-}
 
 keys = [
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
@@ -238,12 +199,53 @@ layouts = [
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
+decoration_group_black = {
+    "decorations": [
+        RectDecoration(
+            colour=colors[11],
+            radius=default_radius,
+            filled=True,
+            padding_y=0,
+            group=True,
+        )
+    ],
+    "padding": 6,
+}
+
+decoration_group_yellow = {
+    "decorations": [
+        RectDecoration(
+            colour=colors[6],
+            radius=default_radius,
+            filled=True,
+            padding_y=0,
+            group=True,
+        )
+    ],
+    "padding": 6,
+}
+
+decoration_group_blue = {
+    "decorations": [
+        RectDecoration(
+            colour=colors[7],
+            radius=default_radius,
+            filled=True,
+            padding_y=0,
+            group=True,
+        )
+    ],
+    "padding": 6,
+}
+
 widget_defaults = dict(
     font="Ubuntu Nerd Font Bold",
     fontsize=12,
     padding=2,
-    background=colors[11],
+    background=colors[12],
 )
+
+extension_defaults = widget_defaults.copy()
 
 screens = [
     Screen(
@@ -254,7 +256,7 @@ screens = [
                     **decoration_group_black,
                 ),
                 widget.GroupBox(
-                    fontsize=12,
+                    # fontsize=12,
                     margin_y=3,
                     margin_x=0,
                     padding_y=5,
@@ -285,43 +287,39 @@ screens = [
                 widget.CurrentLayoutIcon(
                     custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                     foreground=colors[3],
-                    scale=0.6,
+                    scale=0.7,
                     **decoration_group_black,
                 ),
                 widget.CurrentLayout(foreground=colors[3], **decoration_group_black),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0], background=colors[11]
+                    linewidth=0, padding=6, foreground=colors[0]
                 ),
                 widget.WindowName(
-                    foreground=colors[12],
-                    background=colors[11],
+                    foreground=colors[11],
                 ),
                 widget.Sep(
-                    linewidth=0, **decoration_group_yellow, foreground=colors[0], background=colors[11]
+                    linewidth=0, **decoration_group_blue, foreground=colors[0]
                 ),
-                widget.Systray(background=colors[11], **decoration_group_yellow),
+                widget.Systray(background=colors[7], **decoration_group_blue),
                 widget.Sep(
-                    linewidth=0, **decoration_group_yellow, foreground=colors[0], background=colors[11]
+                    linewidth=0, **decoration_group_blue, foreground=colors[0]
                 ),
                 widget.Volume(
                     foreground=colors[7],
-                    background=colors[11],
                     fmt="Vol {}",
                     padding=5,
                 ),
                 # widget.PulseVolume(
                 #               foreground = colors[7],
-                #                background = colors[11],
                 #                emoji = True,
                 #                limit_max_volume = True,
                 #                padding = 5
                 #              ),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0], background=colors[11]
+                    linewidth=0, padding=6, foreground=colors[0]
                 ),
                 widget.Clock(
                     foreground=colors[3],
-                    background=colors[11],
                     format="%H:%M | %d/%m/%Y",
                     **decoration_group_black,
                 ),
@@ -329,7 +327,6 @@ screens = [
                     linewidth=0,
                     **decoration_group_black,
                     foreground=colors[3],
-                    background=colors[11],
                 ),
             ],
             24,

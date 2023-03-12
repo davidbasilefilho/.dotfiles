@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # make sure you are in the dotfiles directory:
 cd ~/.dotfiles/
 
