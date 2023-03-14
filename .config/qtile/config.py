@@ -148,6 +148,24 @@ keys = [
             ),
         ],
     ),
+    KeyChord(
+        [mod],
+        "v",
+        [
+            Key(
+                [],
+                "-",
+                lazy.spawn("amixer sset Master 10%-"),
+                desc="Decrease volume by 10%",
+            ),
+            Key(
+                [],
+                "+",
+                lazy.spawn("amixer sset Master 10%+"),
+                desc="Increase volume by 10%",
+            )
+        ]
+    )
 ]
 
 group_names = "WWW DEV SCHOOL MUS GFX".split()
@@ -253,11 +271,13 @@ screens = [
             [
                 widget.Sep(
                     linewidth=0,
+                    background=colors[12],
                     **decoration_group_black,
                 ),
                 widget.GroupBox(
                     # fontsize=12,
                     margin_y=3,
+                    background=colors[12],
                     margin_x=0,
                     padding_y=5,
                     padding_x=3,
@@ -276,11 +296,13 @@ screens = [
                 ),
                 widget.Sep(
                     linewidth=0,
+                    background=colors[12],
                     **decoration_group_black,
                     foreground=colors[0],
                 ),
                 widget.Sep(
                     linewidth=0,
+                    background=colors[12],
                     padding=16,
                     foreground=colors[0],
                 ),
@@ -288,25 +310,24 @@ screens = [
                     custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                     foreground=colors[3],
                     scale=0.7,
+                    background=colors[12],
                     **decoration_group_black,
                 ),
-                widget.CurrentLayout(foreground=colors[3], **decoration_group_black),
+                widget.CurrentLayout(foreground=colors[3], **decoration_group_black, background=colors[12]),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0]
+                    linewidth=0, padding=6, foreground=colors[0], background=colors[12]
                 ),
                 widget.WindowName(
-                    foreground=colors[11],
-                ),
-                widget.Sep(
-                    linewidth=0, **decoration_group_blue, foreground=colors[0]
+                    foreground=colors[7], background=colors[12]
                 ),
                 widget.Systray(background=colors[7], **decoration_group_blue),
                 widget.Sep(
-                    linewidth=0, **decoration_group_blue, foreground=colors[0]
+                    linewidth=0, foreground=colors[0], background=colors[12]
                 ),
                 widget.Volume(
                     foreground=colors[7],
-                    fmt="Vol {}",
+                    background=colors[12],
+                    fmt="Vol: {}",
                     padding=5,
                 ),
                 # widget.PulseVolume(
@@ -316,10 +337,11 @@ screens = [
                 #                padding = 5
                 #              ),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0]
+                    linewidth=0, padding=6, foreground=colors[0], background=colors[12]
                 ),
                 widget.Clock(
                     foreground=colors[3],
+                    background=colors[12],
                     format="%H:%M | %d/%m/%Y",
                     **decoration_group_black,
                 ),
@@ -327,11 +349,12 @@ screens = [
                     linewidth=0,
                     **decoration_group_black,
                     foreground=colors[3],
+                    background=colors[12]
                 ),
             ],
             24,
             margin=default_margin,
-            background=colors[11],
+            background=colors[12],
         ),
     ),
 ]
