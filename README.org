@@ -20,7 +20,7 @@ This is a list of the packages you need to use this repo.
 - [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://github.com/doomemacs/doomemacs][Doom Emacs]] (install on ~/.emacs.d);
 - [[https://neovim.io][Neovim]], [[https://nvchad.com][NvChad]] and [[https://neovide.dev][Neovide]];
 - The JetBrains Mono [[https://nerdfonts.com][Nerd Font]];
-- [[https://github.com/yshui/picom][Picom]];
+- [[https://github.com/jonaburg/picom][Jonaburg Picom]];
 - [[https://qtile.org][Qtile]] and [[https://github.com/elParaguayo/qtile-extras][qtile-extras]];
 - [[https://github.com/davatorium/rofi][Rofi]] and the [[https://github.com/adi1090x/rofi][Rofi Collection]];
 - [[https://fishshell.com/][Fish Shell]];
