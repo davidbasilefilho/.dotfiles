@@ -11,7 +11,8 @@
 - [[#features-of-qtile][FEATURES OF QTILE]]
 - [[#imports][IMPORTS]]
 - [[#variables][VARIABLES]]
-  - [[#preferences][Preferences]]
+  - [[#modifier-key][Modifier Key]]
+  - [[#application-preferences][Application Preferences]]
   - [[#home-directory][Home Directory]]
   - [[#colors][Colors]]
 - [[#keybindings][KEYBINDINGS]]
@@ -67,21 +68,20 @@ from qtile_extras.widget.decorations import RectDecoration
 * VARIABLES
 Variables that contain data used throughout the config
 
-** Preferences
-Variables that contain preferences like the modifier key, my terminal, default sizes, etc.
+** Modifier Key
+A variable that sets my default modifier key to the Super / Meta / Windows key or the Alt key or whatever I'd like.
 
 #+begin_src python
 mod = "mod4"
+#+end_src
+
+** Application Preferences
+Sets variables to programs that I like and that are used by the config.
+
+#+begin_src python
 terminal = "alacritty"
 browser = "brave-browser"
 filemanager = "pcmanfm"
-
-default_border_width = 6
-default_margin = 8
-default_radius = 8
-
-# border_focus_color = colors[7]
-# border_normal_color = colors[0]
 #+end_src
 
 ** Home Directory
@@ -107,7 +107,7 @@ colors = [
     ["#cba6f7", "#cba6f7"],
     ["#89dceb", "#89dceb"],
     ["#B4BEFE", "#B4BEFE"],
-    ["#313244", "#313244"],
+    ["#1e1e2e", "#1e1e2e"],
     ["#00000000", "#00000000"], # Transparent
 ]
 #+end_src
@@ -200,13 +200,13 @@ keys = [
     Key(
         [mod],
         "space",
-        lazy.spawn([home + "/.config/rofi/scripts/launcher_t2"]),
+        lazy.spawn([home + "/.config/rofi/scripts/launcher_t1"]),
         desc="Open Rofi",
     ),
     Key(
         [mod, "shift"],
         "p",
-        lazy.spawn([home + "/.config/rofi/scripts/powermenu_t2"]),
+        lazy.spawn([home + "/.config/rofi/scripts/powermenu_t1"]),
         desc="Open Power Menu",
     ),
     # Emacs programs launched using the key chord Super + e followed by 'key'
@@ -277,7 +277,7 @@ groups = [
     Group(group_names[1], layout="columns"),
     Group(group_names[2], layout="columns"),
     Group(group_names[3], layout="max"),
-    Group(group_names[4], layout="colums"),
+    Group(group_names[4], layout="columns"),
 ]
 
 for i, name in enumerate(group_names):
@@ -293,7 +293,7 @@ Stuff like border width, margins, border colors, etc.
 
 #+begin_src python
 layout_theme = {
-    "border_width": 6,
+    "border_width": 4,
     "margin": 8,
     "border_focus": colors[7],
     "border_normal": colors[0]
@@ -316,11 +316,11 @@ layouts = [
         ,**layout_theme
     ),
     # layout.Stack(num_stacks=2),
-    layout.Bsp(**layout_theme, border_on_single = True),
-    layout.Spiral(**layout_theme),
+    # layout.Bsp(**layout_theme, border_on_single = True),
+    # layout.Spiral(**layout_theme),
     # layout.Matrix(),
     # layout.MonadTall(),
-    layout.MonadWide(**layout_theme),
+    # layout.MonadWide(**layout_theme),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -341,11 +341,13 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 This is used to combine the RectDecoration of multiple widgets.
 
 #+begin_src python
+decoration_radius = 4
+
 decoration_group_black = {
     "decorations": [
         RectDecoration(
             colour=colors[11],
-            radius=default_radius,
+            radius=decoration_radius,
             filled=True,
             padding_y=0,
             group=True,
@@ -358,7 +360,7 @@ decoration_group_yellow = {
     "decorations": [
         RectDecoration(
             colour=colors[6],
-            radius=default_radius,
+            radius=decoration_radius,
             filled=True,
             padding_y=0,
             group=True,
@@ -371,7 +373,7 @@ decoration_group_blue = {
     "decorations": [
         RectDecoration(
             colour=colors[7],
-            radius=default_radius,
+            radius=decoration_radius,
             filled=True,
             padding_y=0,
             group=True,
@@ -487,8 +489,8 @@ screens = [
                 ),
             ],
             24,
-            margin=default_margin,
-            background=colors[12],
+            margin=8,
+            background=colors[11],
         ),
     ),
 ]

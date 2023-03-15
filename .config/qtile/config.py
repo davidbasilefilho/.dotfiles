@@ -13,16 +13,10 @@ from qtile_extras import widget
 from qtile_extras.widget.decorations import RectDecoration
 
 mod = "mod4"
+
 terminal = "alacritty"
 browser = "brave-browser"
 filemanager = "pcmanfm"
-
-default_border_width = 6
-default_margin = 8
-default_radius = 8
-
-# border_focus_color = colors[7]
-# border_normal_color = colors[0]
 
 home = os.path.expanduser("~")
 
@@ -38,7 +32,7 @@ colors = [
     ["#cba6f7", "#cba6f7"],
     ["#89dceb", "#89dceb"],
     ["#B4BEFE", "#B4BEFE"],
-    ["#313244", "#313244"],
+    ["#1e1e2e", "#1e1e2e"],
     ["#00000000", "#00000000"], # Transparent
 ]
 
@@ -102,13 +96,13 @@ keys = [
     Key(
         [mod],
         "space",
-        lazy.spawn([home + "/.config/rofi/scripts/launcher_t2"]),
+        lazy.spawn([home + "/.config/rofi/scripts/launcher_t1"]),
         desc="Open Rofi",
     ),
     Key(
         [mod, "shift"],
         "p",
-        lazy.spawn([home + "/.config/rofi/scripts/powermenu_t2"]),
+        lazy.spawn([home + "/.config/rofi/scripts/powermenu_t1"]),
         desc="Open Power Menu",
     ),
     # Emacs programs launched using the key chord Super + e followed by 'key'
@@ -174,7 +168,7 @@ groups = [
     Group(group_names[1], layout="columns"),
     Group(group_names[2], layout="columns"),
     Group(group_names[3], layout="max"),
-    Group(group_names[4], layout="colums"),
+    Group(group_names[4], layout="columns"),
 ]
 
 for i, name in enumerate(group_names):
@@ -185,7 +179,7 @@ for i, name in enumerate(group_names):
     ]
 
 layout_theme = {
-    "border_width": 6,
+    "border_width": 4,
     "margin": 8,
     "border_focus": colors[7],
     "border_normal": colors[0]
@@ -203,11 +197,11 @@ layouts = [
         **layout_theme
     ),
     # layout.Stack(num_stacks=2),
-    layout.Bsp(**layout_theme, border_on_single = True),
-    layout.Spiral(**layout_theme),
+    # layout.Bsp(**layout_theme, border_on_single = True),
+    # layout.Spiral(**layout_theme),
     # layout.Matrix(),
     # layout.MonadTall(),
-    layout.MonadWide(**layout_theme),
+    # layout.MonadWide(**layout_theme),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -217,11 +211,13 @@ layouts = [
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
+decoration_radius = 4
+
 decoration_group_black = {
     "decorations": [
         RectDecoration(
             colour=colors[11],
-            radius=default_radius,
+            radius=decoration_radius,
             filled=True,
             padding_y=0,
             group=True,
@@ -234,7 +230,7 @@ decoration_group_yellow = {
     "decorations": [
         RectDecoration(
             colour=colors[6],
-            radius=default_radius,
+            radius=decoration_radius,
             filled=True,
             padding_y=0,
             group=True,
@@ -247,7 +243,7 @@ decoration_group_blue = {
     "decorations": [
         RectDecoration(
             colour=colors[7],
-            radius=default_radius,
+            radius=decoration_radius,
             filled=True,
             padding_y=0,
             group=True,
@@ -353,8 +349,8 @@ screens = [
                 ),
             ],
             24,
-            margin=default_margin,
-            background=colors[12],
+            margin=8,
+            background=colors[11],
         ),
     ),
 ]

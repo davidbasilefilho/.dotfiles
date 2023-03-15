@@ -17,13 +17,13 @@
 
 # The user may have their own clients they want to run.  If they don't,
 # fall back to system defaults.
-if [ -f $HOME/.Xclients ]; then
-    exec $CK_XINIT_SESSION $SSH_AGENT $HOME/.Xclients || \
-    exec $CK_XINIT_SESSION $SSH_AGENT $HOME/.Xclients
+#if [ -f $HOME/.Xclients ]; then
+    #exec $CK_XINIT_SESSION $SSH_AGENT $HOME/.Xclients || \
+    #exec $CK_XINIT_SESSION $SSH_AGENT $HOME/.Xclients
 #elif [ -f /etc/X11/xinit/Xclients ]; then
 #    exec $CK_XINIT_SESSION $SSH_AGENT /etc/X11/xinit/Xclients || \
 #    exec $CK_XINIT_SESSION $SSH_AGENT /etc/X11/xinit/Xclients
-else
+#else
     # Failsafe settings.  Although we should never get here
     # (we provide fallbacks in Xclients as well) it can't hurt.
     #[ -x /usr/bin/xsetroot ] && /usr/bin/xsetroot -solid '#222E45'
@@ -32,7 +32,5 @@ else
 #    [ -x /usr/bin/twm ] && /usr/bin/twm
     picom --experimental-backends --config $HOME/.config/picom/picom.conf &
     nitrogen --restore &
-    exec qtile start
-fi
-
-qtile start
+    qtile start
+#fi
