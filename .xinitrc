@@ -32,5 +32,6 @@
 #    [ -x /usr/bin/twm ] && /usr/bin/twm
     picom --experimental-backends --config $HOME/.config/picom/picom.conf &
     nitrogen --restore &
+    setxkbmap -option ctrl:swapcaps
     qtile start
 #fi
