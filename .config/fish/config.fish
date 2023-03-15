@@ -6,6 +6,9 @@ alias ls='exa -la'
 alias em='emacs -nw'
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib64"
+export EDITOR=vim
+export VISUAL=vim
+export BAT_THEME="Catppuccin-mocha"
 
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.config:$PATH"

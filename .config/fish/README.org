@@ -8,9 +8,9 @@
 * TABLE OF CONTENTS :toc:
 - [[#fish-shell][FISH SHELL]]
 - [[#aliases][ALIASES]]
-- [[#default][DEFAULT]]
+- [[#exports][EXPORTS]]
 - [[#path][PATH]]
-- [[#no-greeting-message][NO GREETING MESSAGE]]
+- [[#greeting-message][GREETING MESSAGE]]
 - [[#starship-prompt][STARSHIP PROMPT]]
 - [[#fun-programs][FUN PROGRAMS]]
 
@@ -29,11 +29,14 @@ alias ls='exa -la'
 alias em='emacs -nw'
 #+end_src
 
-* DEFAULT
+* EXPORTS
 Sets some default environment variables that are not PATH.
 
 #+begin_src shell
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib64"
+export EDITOR=vim
+export VISUAL=vim
+export BAT_THEME="Catppuccin-mocha"
 #+end_src
 
 * PATH
@@ -48,7 +51,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 export PATH="$HOME/.dotfiles/bin:$PATH"
 #+end_src
 
-* NO GREETING MESSAGE
+* GREETING MESSAGE
 Gets rid of the fish shell's annoying greeting message.
 
 #+begin_src shell

@@ -142,24 +142,6 @@ keys = [
             ),
         ],
     ),
-    KeyChord(
-        [mod],
-        "v",
-        [
-            Key(
-                [],
-                "-",
-                lazy.spawn("amixer sset Master 10%-"),
-                desc="Decrease volume by 10%",
-            ),
-            Key(
-                [],
-                "+",
-                lazy.spawn("amixer sset Master 10%+"),
-                desc="Increase volume by 10%",
-            )
-        ]
-    )
 ]
 
 group_names = "WWW DEV SCHOOL MUS GFX".split()
@@ -211,7 +193,7 @@ layouts = [
 
 prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 
-decoration_radius = 4
+decoration_radius = 8
 
 decoration_group_black = {
     "decorations": [
@@ -265,11 +247,6 @@ screens = [
     Screen(
         top=bar.Bar(
             [
-                widget.Sep(
-                    linewidth=0,
-                    background=colors[12],
-                    **decoration_group_black,
-                ),
                 widget.GroupBox(
                     # fontsize=12,
                     margin_y=3,
@@ -293,19 +270,13 @@ screens = [
                 widget.Sep(
                     linewidth=0,
                     background=colors[12],
-                    **decoration_group_black,
-                    foreground=colors[0],
-                ),
-                widget.Sep(
-                    linewidth=0,
-                    background=colors[12],
-                    padding=16,
+                    padding=6,
                     foreground=colors[0],
                 ),
                 widget.CurrentLayoutIcon(
                     custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
                     foreground=colors[3],
-                    scale=0.7,
+                    scale=0.6,
                     background=colors[12],
                     **decoration_group_black,
                 ),
@@ -321,10 +292,10 @@ screens = [
                     linewidth=0, foreground=colors[0], background=colors[12]
                 ),
                 widget.Volume(
-                    foreground=colors[7],
+                    foreground=colors[11],
                     background=colors[12],
-                    fmt="Vol: {}",
-                    padding=5,
+                    fmt="\uf485 {}",
+                    **decoration_group_blue
                 ),
                 # widget.PulseVolume(
                 #               foreground = colors[7],
@@ -350,7 +321,7 @@ screens = [
             ],
             24,
             margin=8,
-            background=colors[11],
+            background=colors[12],
         ),
     ),
 ]
