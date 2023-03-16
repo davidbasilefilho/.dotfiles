@@ -335,7 +335,7 @@ decoration_group_black = {
             group=True,
         )
     ],
-    "padding": 6,
+    # "padding": 6,
 }
 
 decoration_group_yellow = {
@@ -348,7 +348,7 @@ decoration_group_yellow = {
             group=True,
         )
     ],
-    "padding": 6,
+    # "padding": 6,
 }
 
 decoration_group_blue = {
@@ -361,7 +361,7 @@ decoration_group_blue = {
             group=True,
         )
     ],
-    "padding": 6,
+    # "padding": 6,
 }
 #+end_src
 
@@ -392,8 +392,8 @@ screens = [
                     margin_y=3,
                     background=colors[12],
                     margin_x=0,
-                    padding_y=5,
-                    padding_x=3,
+                    padding_y=6,
+                    padding_x=4,
                     borderwidth=3,
                     active=colors[3],
                     inactive=colors[2],
@@ -410,7 +410,7 @@ screens = [
                 widget.Sep(
                     linewidth=0,
                     background=colors[12],
-                    padding=6,
+                    padding=10,
                     foreground=colors[0],
                 ),
                 widget.CurrentLayoutIcon(
@@ -418,22 +418,30 @@ screens = [
                     foreground=colors[3],
                     scale=0.6,
                     background=colors[12],
+                    padding=6,
                     ,**decoration_group_black,
                 ),
-                widget.CurrentLayout(foreground=colors[3], **decoration_group_black, background=colors[12]),
+                widget.CurrentLayout(foreground=colors[3], **decoration_group_black, background=colors[12], padding=6),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0], background=colors[12]
+                    linewidth=0, padding=10, foreground=colors[0], background=colors[12]
                 ),
                 widget.WindowName(
                     foreground=colors[7], background=colors[12]
                 ),
+                widget.Sep(
+                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue, padding=6
+                ),
                 widget.Systray(background=colors[7], **decoration_group_blue),
                 widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12]
+                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue, padding=8
+                ),
+                widget.Sep(
+                    linewidth=2, foreground=colors[0], background=colors[12], **decoration_group_blue, padding=6
                 ),
                 widget.Volume(
                     foreground=colors[11],
                     background=colors[12],
+                    padding=6,
                     fmt="\uf485 {}",
                     ,**decoration_group_blue
                 ),
@@ -444,19 +452,14 @@ screens = [
                 #                padding = 5
                 #              ),
                 widget.Sep(
-                    linewidth=0, padding=6, foreground=colors[0], background=colors[12]
+                    linewidth=0, padding=10, foreground=colors[0], background=colors[12]
                 ),
                 widget.Clock(
                     foreground=colors[3],
                     background=colors[12],
+                    padding=6,
                     format="%H:%M | %d/%m/%Y",
                     ,**decoration_group_black,
-                ),
-                widget.Sep(
-                    linewidth=0,
-                    ,**decoration_group_black,
-                    foreground=colors[3],
-                    background=colors[12]
                 ),
             ],
             24,
