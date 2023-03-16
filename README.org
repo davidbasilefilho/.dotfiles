@@ -2,8 +2,6 @@
 #+author: David Basile Filho
 #+description: An org document that contains instructions to use my .dotfiles repo
 #+startup: showeverything
-#+property: header-args :tangle install.sh
-#+auto_tangle: t
 
 These are my dotfiles! They include Doom Emacs, Latte Dock, Alacritty, Oh My Posh and Picom configurations.
 
@@ -33,7 +31,6 @@ This is a list of the packages you need to use this repo.
 
 * GETTING STARTED
 This section of the README is dedicated to setting up the dots.
-Run the [[file:install.sh][install.sh]]
 
 ** Setting Up the Repo
 First, to get access to the files, so you can install the dots, clone the repo with ~git clone https://github.com/DavidBF16/.dotfiles ~/.dotfiles~.
@@ -43,7 +40,6 @@ The Sync Script will make symlinks in your home directory.
 One alternative to this is to run ~stow .~
 
 #+begin_src shell
-#!/usr/bin/env bash
 # make sure you are in the dotfiles directory:
 cd ~/.dotfiles/
 
