@@ -205,7 +205,7 @@ decoration_group_black = {
             group=True,
         )
     ],
-    # "padding": 6,
+    "padding": 6,
 }
 
 decoration_group_yellow = {
@@ -218,7 +218,7 @@ decoration_group_yellow = {
             group=True,
         )
     ],
-    # "padding": 6,
+    "padding": 6,
 }
 
 decoration_group_blue = {
@@ -231,13 +231,13 @@ decoration_group_blue = {
             group=True,
         )
     ],
-    # "padding": 6,
+    "padding": 6,
 }
 
 widget_defaults = dict(
     font="Ubuntu Nerd Font Bold",
     fontsize=12,
-    padding=2,
+    padding=6,
     background=colors[12],
 )
 
@@ -270,7 +270,6 @@ screens = [
                 widget.Sep(
                     linewidth=0,
                     background=colors[12],
-                    padding=10,
                     foreground=colors[0],
                 ),
                 widget.CurrentLayoutIcon(
@@ -278,46 +277,35 @@ screens = [
                     foreground=colors[3],
                     scale=0.6,
                     background=colors[12],
-                    padding=6,
                     **decoration_group_black,
                 ),
-                widget.CurrentLayout(foreground=colors[3], **decoration_group_black, background=colors[12], padding=6),
+                widget.CurrentLayout(foreground=colors[3], **decoration_group_black, background=colors[12]),
                 widget.Sep(
-                    linewidth=0, padding=10, foreground=colors[0], background=colors[12]
+                    linewidth=0, foreground=colors[0], background=colors[12]
                 ),
                 widget.WindowName(
                     foreground=colors[7], background=colors[12]
                 ),
-                widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue, padding=6
-                ),
+                widget.Sep(linewidth=0, foreground=colors[0], **decoration_group_blue),
                 widget.Systray(background=colors[7], **decoration_group_blue),
                 widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue, padding=8
-                ),
-                widget.Sep(
-                    linewidth=2, foreground=colors[0], background=colors[12], **decoration_group_blue, padding=6
+                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue
                 ),
                 widget.Volume(
                     foreground=colors[11],
                     background=colors[12],
-                    padding=6,
                     fmt="\uf485 {}",
                     **decoration_group_blue
                 ),
-                # widget.PulseVolume(
-                #               foreground = colors[7],
-                #                emoji = True,
-                #                limit_max_volume = True,
-                #                padding = 5
-                #              ),
                 widget.Sep(
-                    linewidth=0, padding=10, foreground=colors[0], background=colors[12]
+                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue
+                ),
+                widget.Sep(
+                    linewidth=0, foreground=colors[0], background=colors[12]
                 ),
                 widget.Clock(
                     foreground=colors[3],
                     background=colors[12],
-                    padding=6,
                     format="%H:%M | %d/%m/%Y",
                     **decoration_group_black,
                 ),
