@@ -25,9 +25,9 @@ This is a table with some of my configurations.
 This is a list of the packages you need to use this repo.
 
 - [[https://kernel.org][GNU/Linux]] (I use Fedora);
-- [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://github.com/doomemacs/doomemacs][Doom Emacs]] (install on ~/.emacs.d);
+- [[https://www.gnu.org/software/emacs/][Emacs]] and [[https://github.com/doomemacs/doomemacs][Doom Emacs]] (install on ~/.emacs.d to avoid errors);
 - [[https://neovim.io][Neovim]], [[https://nvchad.com][NvChad]] and [[https://neovide.dev][Neovide]];
-- The JetBrains Mono [[https://nerdfonts.com][Nerd Font]];
+- [[https://nerdfonts.com][Nerd Fonts]], more specifically JetBrains Mono, Ubuntu and Ubuntu Mono;
 - [[https://github.com/jonaburg/picom][Jonaburg Picom]];
 - [[https://qtile.org][Qtile]] and [[https://github.com/elParaguayo/qtile-extras][qtile-extras]];
 - [[https://github.com/davatorium/rofi][Rofi]] and the [[https://github.com/adi1090x/rofi][Rofi Collection]];
