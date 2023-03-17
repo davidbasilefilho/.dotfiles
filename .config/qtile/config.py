@@ -144,13 +144,14 @@ keys = [
     ),
 ]
 
-group_names = "WWW DEV SCHOOL MUS GFX".split()
+group_names = "WWW DEV VBOX SCHOOL MUS GFX".split()
 groups = [
     Group(group_names[0], layout="max"),
     Group(group_names[1], layout="columns"),
-    Group(group_names[2], layout="columns"),
-    Group(group_names[3], layout="max"),
-    Group(group_names[4], layout="columns"),
+    Group(group_names[2], layout="max"),
+    Group(group_names[3], layout="columns"),
+    Group(group_names[4], layout="max"),
+    Group(group_names[5], layout="columns"),
 ]
 
 for i, name in enumerate(group_names):
