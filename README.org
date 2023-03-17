@@ -18,6 +18,7 @@ Dotfiles are the customization files that are used to personalize your Linux or 
 * SOME CONFIGS OF MINE
 This is a table with some of my configurations.
 | Program            | Config        |
+|--------------------+---------------|
 | [[http://qtile.org/][Qtile]]              | [[file:.config/qtile/README.org][Qtile Config]]  |
 | [[https://github.com/doomemacs/doomemacs][Doom Emacs]]         | [[file:.doom.d/README.org][Doom Config]]   |
 | [[https://nvchad.com][NvChad]]             | [[file:.config/nvchad/chadrc.lua][NvChad Config]] |
