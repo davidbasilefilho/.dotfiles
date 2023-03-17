@@ -271,6 +271,7 @@ screens = [
                     linewidth=0,
                     background=colors[12],
                     foreground=colors[0],
+                    padding=12
                 ),
                 widget.CurrentLayoutIcon(
                     custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
@@ -301,7 +302,7 @@ screens = [
                     linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue
                 ),
                 widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12]
+                    linewidth=0, foreground=colors[0], background=colors[12], padding=12
                 ),
                 widget.Clock(
                     foreground=colors[3],

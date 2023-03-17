@@ -30,8 +30,9 @@
 #    [ -x /usr/bin/xclock ] && /usr/bin/xclock -geometry 100x100-5+5 &
     #[ -x /usr/bin/xterm ] && xterm -geometry 80x50-50+150 &
 #    [ -x /usr/bin/twm ] && /usr/bin/twm
-    picom --experimental-backends --config $HOME/.config/picom/picom.conf &
-    nitrogen --restore &
-    setxkbmap -option ctrl:swapcaps
-    qtile start
+    #picom --experimental-backends --config $HOME/.config/picom/picom.conf &
+    #nitrogen --restore &
+    # setxkbmap -option ctrl:swapcaps &
+    #sddm
+    # qtile start
 #fi

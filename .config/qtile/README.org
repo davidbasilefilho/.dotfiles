@@ -20,7 +20,7 @@
 - [[#layout-theme][LAYOUT THEME]]
 - [[#layouts][LAYOUTS]]
 - [[#prompt][PROMPT]]
-- [[#decoration-groups][Decoration Groups]]
+- [[#decoration-groups][DECORATION GROUPS]]
 - [[#widget-defaults][WIDGET DEFAULTS]]
 - [[#bar][BAR]]
 - [[#drag-windows][DRAG WINDOWS]]
@@ -319,7 +319,7 @@ prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
 #+end_src
 
 
-* Decoration Groups
+* DECORATION GROUPS
 This is used to combine the RectDecoration of multiple widgets.
 
 #+begin_src python
@@ -411,6 +411,7 @@ screens = [
                     linewidth=0,
                     background=colors[12],
                     foreground=colors[0],
+                    padding=12
                 ),
                 widget.CurrentLayoutIcon(
                     custom_icon_paths=[os.path.expanduser("~/.config/qtile/icons")],
@@ -441,7 +442,7 @@ screens = [
                     linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue
                 ),
                 widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12]
+                    linewidth=0, foreground=colors[0], background=colors[12], padding=12
                 ),
                 widget.Clock(
                     foreground=colors[3],
