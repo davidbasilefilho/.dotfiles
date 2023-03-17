@@ -3,13 +3,23 @@
 #+description: An org document that contains instructions to use my .dotfiles repo
 #+startup: showeverything
 
-These are my dotfiles! They include Doom Emacs, Latte Dock, Alacritty, Oh My Posh and Picom configurations.
 
 * TABLE OF CONTENTS :toc:
+- [[#what-are-dotfiles][WHAT ARE DOTFILES?]]
+- [[#some-configs-of-mine][SOME CONFIGS OF MINE]]
 - [[#dependencies][DEPENDENCIES]]
 - [[#getting-started][GETTING STARTED]]
   - [[#setting-up-the-repo][Setting Up the Repo]]
   - [[#run-the-sync-script][Run the Sync Script]]
+
+* WHAT ARE DOTFILES?
+Dotfiles are the customization files that are used to personalize your Linux or other Unix-based system.  You can tell that a file is a dotfile because the name of the file will begin with a period–a dot!  The period at the beginning of a filename or directory name indicates that it is a hidden file or directory.  This repository contains my personal dotfiles.  They are stored here for convenience so that I may quickly access them on new machines or new installs.
+
+* SOME CONFIGS OF MINE
+This is a table with some of my configurations.
+| Qtile  | Doom Emacs |
+| NvChad | Picom      |
+
 
 * DEPENDENCIES
 This is a list of the packages you need to use this repo.
