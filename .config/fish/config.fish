@@ -9,6 +9,7 @@ alias nix-in="nix-env -iA"
 alias nix-rm="nix-env -e"
 alias nix-ls="nix-env -q"
 alias nix-up="nix-env -uA"
+alias nix-se="nix-env -qaP"
 
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib64"
 export EDITOR=vim

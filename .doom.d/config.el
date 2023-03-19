@@ -1,4 +1,4 @@
-(setq doom-theme 'catppuccin)
+(setq doom-theme 'doom-one)
 (setq display-line-numbers-type 'relative)
 
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
