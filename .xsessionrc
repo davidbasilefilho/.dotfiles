@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+export XCURSOR_PATH=~/.icons:~/.nix-profile/share/icons/:$XCURSOR_PATH

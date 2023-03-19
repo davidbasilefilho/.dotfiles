@@ -1,14 +1,20 @@
-alias ..='cd ..'
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
 alias ls='exa -la'
 alias em='emacs -nw'
 
+# Nix Package Manager
+alias nix-in="nix-env -iA"
+alias nix-rm="nix-env -e"
+alias nix-ls="nix-env -q"
+alias nix-up="nix-env -uA"
+
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/local/lib64"
 export EDITOR=vim
 export VISUAL=vim
 export BAT_THEME="Catppuccin-mocha"
+export XCURSOR_PATH="$HOME/.icons:$HOME/.nix-profile/share/icons/:$XCURSOR_PATH"
 
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.config:$PATH"
