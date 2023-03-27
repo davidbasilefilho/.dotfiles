@@ -105,6 +105,15 @@ keys = [
         lazy.spawn([home + "/.config/rofi/scripts/powermenu_t1"]),
         desc="Open Power Menu",
     ),
+
+    Key(
+        [mod, "shift"],
+        "n",
+        lazy.spawn("neovide"),
+        desc="Open Neovide",
+    ),
+
+
     # Emacs programs launched using the key chord Super + e followed by 'key'
     KeyChord(
         [mod],
@@ -146,7 +155,7 @@ keys = [
 
 group_names = "WWW DEV VBOX SCHOOL MUS GFX".split()
 groups = [
-    Group(group_names[0], layout="max"),
+    Group(group_names[0], layout="columns"),
     Group(group_names[1], layout="columns"),
     Group(group_names[2], layout="max"),
     Group(group_names[3], layout="columns"),

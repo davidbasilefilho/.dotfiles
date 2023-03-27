@@ -1,22 +1,25 @@
 -- First read our docs (completely) then check the example_config repo
 
-local g = vim.g
-local o = vim.opt
-
-if g.neovide then
-  o.guifont = { "JetBrainsMono Nerd Font", ":h14" }
+-- Neovide Settings
+if vim.g.neovide then
+  vim.opt.guifont = { "JetBrainsMono Nerd Font", ":h14" }
 end
+
+-- Relative Numbers by default
+vim.o.relativenumber = true
 
 local M = {}
 
-M.ui = {
-  theme = "catppuccin",
-}
-
+-- Installs Plugins
 M.plugins = {
-  -- Enabling Plugins
-  ["goolord/alpha-nvim"] = { disable = false },
   ["folke/which-key.nvim"] = { disable = false },
+
+  ["nvim-orgmode/orgmode"] = {
+    ft = { 'org' },
+    config = function()
+      require('orgmode').setup {}
+    end,
+  },
 
   ["williamboman/mason.nvim"] = {
     override_options = {
@@ -35,7 +38,10 @@ M.plugins = {
         "prettier",
 
         -- my stuff
-        "csharp-language-server",
+        "omnisharp",
+        "python-lsp-server",
+        "rust-analyzer",
+        "rustfmt",
         "csharpier",
         "clangd",
         "clang-format",
@@ -45,8 +51,11 @@ M.plugins = {
         "shellcheck",
       },
     },
-  }
+  },
+}
 
+M.ui = {
+  theme = "catppuccin",
 }
 
 return M

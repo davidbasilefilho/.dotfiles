@@ -132,12 +132,11 @@ IMPORTANT - Keep in mind that I the Dvorak keyboard layout, so I adapted the HJK
 | MODKEY + SHIFT + R     | Restarts Qtile                            |
 | MODKEY + B             | Opens browser                             |
 | MODKEY + SHIFT + E     | Opens the file manager                    |
+| MODKEY + SHIFT + N     | Opens Neovide                             |
 | MODKEY + E E           | Opens Emacsclient                         |
 | MODKEY + E B           | Opens Ibuffer                             |
 | MODKEY + E D           | Opens Dired                               |
 | MODKEY + SHIFT + SPACE | Next window on max layout                 |
-| MODKEY + V +           | Increase volume by 10%                    |
-| MODKEY + V -           | Decrease volume by 10%                    |
 
 #+begin_src python
 keys = [
@@ -209,6 +208,15 @@ keys = [
         lazy.spawn([home + "/.config/rofi/scripts/powermenu_t1"]),
         desc="Open Power Menu",
     ),
+
+    Key(
+        [mod, "shift"],
+        "n",
+        lazy.spawn("neovide"),
+        desc="Open Neovide",
+    ),
+
+
     # Emacs programs launched using the key chord Super + e followed by 'key'
     KeyChord(
         [mod],
@@ -255,7 +263,7 @@ Groups are actually workspaces.
 #+begin_src python
 group_names = "WWW DEV VBOX SCHOOL MUS GFX".split()
 groups = [
-    Group(group_names[0], layout="max"),
+    Group(group_names[0], layout="columns"),
     Group(group_names[1], layout="columns"),
     Group(group_names[2], layout="max"),
     Group(group_names[3], layout="columns"),
