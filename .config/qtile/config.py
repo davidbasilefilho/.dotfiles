@@ -215,7 +215,7 @@ decoration_group_black = {
             group=True,
         )
     ],
-    "padding": 6,
+    # "padding": 6,
 }
 
 decoration_group_yellow = {
@@ -228,7 +228,7 @@ decoration_group_yellow = {
             group=True,
         )
     ],
-    "padding": 6,
+    # "padding": 6,
 }
 
 decoration_group_blue = {
@@ -241,7 +241,7 @@ decoration_group_blue = {
             group=True,
         )
     ],
-    "padding": 6,
+    # "padding": 6,
 }
 
 widget_defaults = dict(
@@ -297,19 +297,25 @@ screens = [
                 widget.WindowName(
                     foreground=colors[7], background=colors[12]
                 ),
-                widget.Sep(linewidth=0, foreground=colors[0], **decoration_group_blue),
-                widget.Systray(background=colors[7], **decoration_group_blue),
+                widget.Systray(background=colors[12], padding=12),
                 widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue
+                    linewidth=0, foreground=colors[0], background=colors[12], padding=12
+                ),
+                widget.Clipboard(
+                    foreground=colors[0],
+                    background=colors[12],
+                    timeout=None,
+                    fmt="\uebcc {}",
+                    **decoration_group_yellow,
+                ),
+                widget.Sep(
+                    linewidth=0, foreground=colors[0], background=colors[12], padding=12
                 ),
                 widget.Volume(
                     foreground=colors[11],
                     background=colors[12],
                     fmt="\uf485 {}",
                     **decoration_group_blue
-                ),
-                widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12], **decoration_group_blue
                 ),
                 widget.Sep(
                     linewidth=0, foreground=colors[0], background=colors[12], padding=12
