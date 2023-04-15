@@ -211,7 +211,7 @@ keys = [
 
     Key(
         [mod, "shift"],
-        "n",
+        "l",
         lazy.spawn("neovide"),
         desc="Open Neovide",
     ),
@@ -518,6 +518,7 @@ floating_layout = layout.Floating(
         Match(title="pinentry"),  # GPG key password entry
         Match(title="Please Confirm..."), # Godot Cofirmation stuff
         Match(title="Create New Project"), # Godot New Project
+        Match(title="UnityEditor.AddComponent.AddComponentWindow"),
     ]
 )
 
