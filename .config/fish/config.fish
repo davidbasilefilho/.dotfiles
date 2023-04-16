@@ -5,7 +5,7 @@ alias ls='exa -la'
 alias em='emacs -nw'
 
 # DNF5 instead of DNF4 (will not be needed in F39)
-alias dnf="dnf5"
+alias dnf="sudo dnf5"
 
 # Nix Package Manager
 alias nix-in="nix-env -iA"
