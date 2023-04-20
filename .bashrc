@@ -28,3 +28,6 @@ unset rc
 export PATH="$PATH:$HOME/.spicetify"
 export PATH="$PATH:$HOME/.nix-profile/share/applications"
 . "$HOME/.cargo/env"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

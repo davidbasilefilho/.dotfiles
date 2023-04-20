@@ -150,7 +150,8 @@
         +journal             ; enable org journal
         +pretty              ; replace asterisks with pretty org bullets
         +publish)             ; create static websites with org
-       (php +lsp) php               ; perl's insecure younger brother
+
+       (php +lsp)               ; perl's insecure younger brother
        ;;plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +lsp)     ; beautiful is better than ugly

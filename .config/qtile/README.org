@@ -440,16 +440,6 @@ screens = [
                 widget.Sep(
                     linewidth=0, foreground=colors[0], background=colors[12], padding=12
                 ),
-                widget.Clipboard(
-                    foreground=colors[0],
-                    background=colors[12],
-                    timeout=None,
-                    fmt="\uebcc {}",
-                    ,**decoration_group_yellow,
-                ),
-                widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12], padding=12
-                ),
                 widget.Volume(
                     foreground=colors[11],
                     background=colors[12],
@@ -543,6 +533,7 @@ def start_once():
 * JAVA FIX
 Fix a bug on Java applications.
 The Qtile team's explanation for this fix:
+
     #+begin_quote
     Gasp! We're lying here. In fact, nobody really uses or cares about this string besides java UI toolkits; you can see several discussions on the mailing lists, GitHub issues, and other WM documentation that suggest setting this string if your java app doesn't work correctly. We may as well just lie and say that we're a working one by default.
 

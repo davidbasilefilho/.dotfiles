@@ -301,16 +301,6 @@ screens = [
                 widget.Sep(
                     linewidth=0, foreground=colors[0], background=colors[12], padding=12
                 ),
-                widget.Clipboard(
-                    foreground=colors[0],
-                    background=colors[12],
-                    timeout=None,
-                    fmt="\uebcc {}",
-                    **decoration_group_yellow,
-                ),
-                widget.Sep(
-                    linewidth=0, foreground=colors[0], background=colors[12], padding=12
-                ),
                 widget.Volume(
                     foreground=colors[11],
                     background=colors[12],
